@@ -1,5 +1,5 @@
 :root {
-    --bg-primary: #E95D4C;
+    --bg-primary: #0F2E43;
     --bg-background: #F0F0F0;
     --dark: #353535;
     --dark-tint: #8f8f8f;
@@ -174,47 +174,16 @@ a.nav-brand img{
     margin-bottom: 0;
 }
 
-.breadcrumb {
-    padding: 0.75rem 1rem;
-    background-color: transparent;
-    align-items: center;
+.input-label {
+    font-size: 0.8em;
+    color: var(--dark);
+    font-weight: 600 !important;
 }
 
-.breadcrumb-item {
-    display: flex;
-    align-items: center;
-}
-
-.breadcrumb-item a {
-    text-decoration: none !important;
-    color: var(--dark) !important;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.breadcrumb-item.active {
-    text-decoration: none !important;
-    color: var(--dark-tint) !important;
+.input-label-error {
+    font-size: 0.6em;
     font-weight: 500;
-    font-size: 0.8rem;
-    display: flex;
-    align-items: center;
-    align-self: center;
-}
-
-.breadcrumb-item + .breadcrumb-item::before {
-    float: left;
-    content: "\203A";
-    /*font-weight: bold;*/
-    color: var(--dark-tint);
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    font-size: 1.5rem;
-    align-self: center;
-}
-
-.breadcrumb-item.active::before {
-    font-weight: normal !important;
+    color: var(--danger);
 }
 
 .text-group-container {

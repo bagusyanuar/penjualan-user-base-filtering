@@ -34,8 +34,9 @@
 }
 
 .card-login-form {
-    width: 600px;
-    height: 400px;
+    width: 300px;
+    height: 280px;
+    padding: 1.75rem 2rem;
     background-color: white;
     border-radius: var(--card-border);
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
@@ -43,34 +44,6 @@
     align-items: center;
     justify-content: start;
 }
-
-.card-login-form .left-panel {
-    width: 300px;
-    height: 100%;
-    background-color: #E95D4C;
-    border-top-left-radius: var(--card-border);
-    border-bottom-left-radius: var(--card-border);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.left-panel img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: center center;
-}
-
-.card-login-form .right-panel {
-    width: 300px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 1.75rem 1.5rem;
-}
-
 
 .form-login {
     width: 100%;
@@ -83,7 +56,7 @@
 }
 
 .form-login img {
-    width: 65px;
+    width: 100px;
     height: auto;
     object-fit: cover;
     object-position: center center;
@@ -136,9 +109,8 @@
 }
 
 .sidebar-brand img {
-    width: 40px;
+    width: 150px;
     height: auto;
-    margin-right: 0.5rem;
 }
 
 .sidebar-brand p {
@@ -173,6 +145,10 @@
     background-color: var(--bg-primary) !important;
 }
 
+.sidebar-item p {
+    font-size: 0.9em;
+}
+
 .sidebar-item i {
     margin-right: 0.75rem;
 }
@@ -183,7 +159,7 @@
 }
 
 .content-title {
-    font-size: 1.25em;
+    font-size: 1em;
     font-weight: bold;
     color: var(--dark);
     margin-bottom: 0;
@@ -192,6 +168,49 @@
 .content-sub-title {
     font-size: 0.8em;
     color: var(--dark-tint);
+}
+
+.breadcrumb {
+    padding: 0.75rem 1rem;
+    background-color: transparent;
+    align-items: center;
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-item a {
+    text-decoration: none !important;
+    color: var(--dark) !important;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.breadcrumb-item.active {
+    text-decoration: none !important;
+    color: var(--dark-tint) !important;
+    font-weight: 500;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    align-self: center;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    float: left;
+    content: "\203A";
+    /*font-weight: bold;*/
+    color: var(--dark-tint);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 1.5rem;
+    align-self: center;
+}
+
+.breadcrumb-item.active::before {
+    font-weight: normal !important;
 }
 
 .card-content {
@@ -221,7 +240,7 @@
     text-decoration: none;
     padding: 0.5rem 1.5rem;
     border-radius: 5px;
-    color: var(--dark);
+    color: whitesmoke;
     width: fit-content;
     border: none;
     outline: none;
@@ -234,7 +253,7 @@
 }
 
 .btn-add:hover {
-    color: var(--dark);
+    color: whitesmoke;
     background-color: color-mix(in srgb, var(--bg-primary) 90%, white);
 }
 
@@ -246,6 +265,8 @@
 .custom-divider {
     border-bottom: 1px solid var(--light);
 }
+
+
 
 .dataTables_wrapper {
     font-size: 0.8em;
