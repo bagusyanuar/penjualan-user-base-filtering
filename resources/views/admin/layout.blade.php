@@ -64,7 +64,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#"
+                    <a href="{{ route('admin.product') }}"
                        class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/product*') ? 'active' : '' }}">
                         <i class='bx bx-briefcase'></i>
                         <p>Product</p>
