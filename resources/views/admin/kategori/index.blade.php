@@ -53,16 +53,14 @@
                 responsive: true,
                 paging: true,
                 "fnDrawCallback": function (setting) {
-                    // expandRow();
-                    // eventDetail();
+                    eventDelete();
                 },
                 columns: [
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false},
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false, className: 'text-center middle-header',},
                     {
                         data: 'nama',
                         className: 'middle-header',
                     },
-
                     {
                         data: null,
                         orderable: false,
@@ -78,6 +76,17 @@
                     }
                 ],
             });
+        }
+
+        function eventDelete() {
+            $('.btn-table-action-delete').on('click', function (e) {
+                e.preventDefault();
+                let id = this.dataset.id;
+                AlertConfirm('Konfirmasi', 'Apakah anda yakin ingin menghapus data?', function () {
+                    let url = path + '/' + id + '/delete';
+                    BaseDeleteHandler(url, id);
+                })
+            })
         }
 
         $(document).ready(function () {

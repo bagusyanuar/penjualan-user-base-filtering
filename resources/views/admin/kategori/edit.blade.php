@@ -38,7 +38,7 @@
                 <label for="name" class="form-label input-label">Nama Kategori <span
                         class="color-danger">*</span></label>
                 <input type="text" placeholder="nama kategori" class="text-input" id="name"
-                       name="name">
+                       name="name" value="{{ $data->nama }}">
                 @if($errors->has('name'))
                     <span id="name-error" class="input-label-error">
                         {{ $errors->first('name') }}
