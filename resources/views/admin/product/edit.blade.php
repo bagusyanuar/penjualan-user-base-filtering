@@ -17,7 +17,7 @@
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.product') }}">Product</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Tambah</li>
+                <li class="breadcrumb-item active" aria-current="page">Edit</li>
             </ol>
         </nav>
     </div>
@@ -29,7 +29,7 @@
                         class="color-danger">*</span></label>
                 <select id="category" name="category" class="text-input">
                     @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->nama }}</option>
+                        <option value="{{ $category->id }}" {{ $category->id == $data->kategori_id ? 'selected' : '' }}>{{ $category->nama }}</option>
                     @endforeach
                 </select>
                 <span id="category-error" class="input-label-error d-none"></span>
@@ -38,20 +38,20 @@
                 <label for="name" class="form-label input-label">Nama <span
                         class="color-danger">*</span></label>
                 <input type="text" placeholder="ex: Xiaomi Redmi 9A" class="text-input" id="name"
-                       name="name">
+                       name="name" value="{{ $data->nama }}">
                 <span id="name-error" class="input-label-error d-none"></span>
             </div>
             <div class="w-100 mb-3">
                 <label for="price" class="form-label input-label">Harga (Rp) <span
                         class="color-danger">*</span></label>
                 <input type="number" placeholder="0" class="text-input" id="price"
-                       name="price" value="0">
+                       name="price" value="{{ $data->harga }}">
                 <span id="price-error" class="input-label-error d-none"></span>
             </div>
             <div class="w-100 mb-3">
                 <label for="description" class="form-label input-label">Deskripsi</label>
                 <textarea rows="6" placeholder="Product Description" class="text-input" id="description"
-                          name="description"></textarea>
+                          name="description">{{ $data->deskripsi }}</textarea>
             </div>
             <div class="w-100">
                 <label for="document-dropzone" class="form-label input-label">Gambar Produk</label>

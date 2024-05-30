@@ -1,0 +1,91 @@
+.nav-wrapper {
+    height: 4rem;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    justify-content: space-between;
+}
+
+.custom-nav-brand {
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+a.custom-nav-brand img{
+    height: 40px;
+    border-radius: 5px;
+}
+
+.nav-link-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-link-item {
+    text-decoration: none;
+    color: color-mix(in srgb, white 20%, black);
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    -webkit-transition: background-color .5s ease-in-out, color .3s ease-in-out;
+    -moz-transition: background-color .5s ease-in-out, color .3s ease-in-out;
+    -o-transition: background-color .5s ease-in-out, color .3s ease-in-out;
+    transition: background-color .5s ease-in-out, color .3s ease-in-out;
+}
+
+.nav-link-item:hover {
+    background-color: var(--bg-primary);
+    color: white;
+}
+
+.nav-link-item.active {
+    background-color: var(--bg-primary);
+    color: white;
+}
+
+.nav-menu-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.banner-container {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-menu-item i {
+    font-size: 16px;
+    color: color-mix(in srgb, white 20%, black);
+}
+
+.nav-menu-item i:hover {
+    color: black;
+}
+
+.banner-container img {
+    height: inherit;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.slick-prev::before, .slick-next::before {
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: var(--bg-primary) !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

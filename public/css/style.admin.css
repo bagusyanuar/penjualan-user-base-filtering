@@ -326,6 +326,7 @@ table.dataTable td.dt-control:before {
     height: 55px;
     object-fit: cover;
     object-position: center;
+    border-radius: 3px;
 }
 
 .btn-table-action-delete {

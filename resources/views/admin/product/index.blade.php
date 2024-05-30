@@ -25,8 +25,11 @@
         <table id="table-data" class="display table w-100">
             <thead>
             <tr>
-                <th width="5%" class="text-center">#</th>
+                <th width="5%" class="text-center"></th>
+                <th width="12%" class="text-center middle-header">Gambar</th>
+                <th width="10%" class="text-center middle-header">Kategori</th>
                 <th>Nama</th>
+                <th width="12%" class="text-end">Harga (Rp)</th>
                 <th width="10%" class="text-center">Aksi</th>
             </tr>
             </thead>
@@ -56,10 +59,43 @@
                     eventDelete();
                 },
                 columns: [
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false, className: 'text-center middle-header',},
+                    {
+                        className: 'dt-control middle-header',
+                        orderable: false,
+                        data: null,
+                        render: function () {
+                            return '<i class="bx bx-plus-circle"></i>';
+                        }
+                    },
+                    {
+                        data: 'gambar',
+                        orderable: false,
+                        className: 'middle-header text-center',
+                        render: function (data) {
+                            if (data !== null) {
+                                return '<div class="w-100 d-flex justify-content-center">' +
+                                    '<a href="' + data + '" target="_blank" class="box-product-image">' +
+                                    '<img src="' + data + '" alt="product-image" />' +
+                                    '</a>' +
+                                    '</div>';
+                            }
+                            return '-';
+                        }
+                    },
+                    {
+                        data: 'category.nama',
+                        className: 'middle-header text-center',
+                    },
                     {
                         data: 'nama',
                         className: 'middle-header',
+                    },
+                    {
+                        data: 'harga',
+                        className: 'text-right middle-header',
+                        render: function (data) {
+                            return data.toLocaleString('id-ID');
+                        }
                     },
                     {
                         data: null,
@@ -89,8 +125,46 @@
             })
         }
 
+        function expandRow() {
+            $('#table-data tbody').on('click', 'td.dt-control', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                var i = $(this).children();
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                    i.removeClass('bx-minus-circle');
+                    i.addClass('bx-plus-circle');
+                } else {
+                    // Open this row
+                    row.child(descriptionElement(row.data())).show();
+                    tr.addClass('shown');
+                    i.removeClass('bx-plus-circle');
+                    i.addClass('bx-minus-circle');
+                }
+            });
+        }
+
+        function descriptionElement(data) {
+            let description = data['deskripsi'];
+            if (description !== null) {
+                let content = data['deskripsi'].toString();
+                let contentString = $.parseHTML(content);
+                return (
+                    '<div>' + contentString[0].nodeValue + '</div>'
+                );
+            }
+            return  (
+                '<div class="w-100 d-flex justify-content-center align-items-center">' +
+                '<p>Belum ada deskripsi product</p>' +
+                '</div>'
+            )
+        }
+
         $(document).ready(function () {
             generateTable();
+            expandRow();
         })
     </script>
 @endsection
