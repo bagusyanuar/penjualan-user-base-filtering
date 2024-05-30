@@ -1,14 +1,31 @@
 @extends('customer.layout')
 
 @section('content')
-{{--    <div class="slick-banner">--}}
-{{--        <div class="banner-container">--}}
-{{--            <img src="{{ asset('/assets/images/banner-hp-1.webp') }}" alt="img-banner">--}}
-{{--        </div>--}}
-{{--        <div class="banner-container">--}}
-{{--            <img src="{{ asset('/assets/images/banner-hp-1.webp') }}" alt="img-banner">--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    <div class="slick-banner mb-5">
+        <div class="banner-container">
+            <img src="{{ asset('/assets/images/banner-hp-1.webp') }}" alt="img-banner">
+        </div>
+        <div class="banner-container">
+            <img src="{{ asset('/assets/images/banner-hp-1.webp') }}" alt="img-banner">
+        </div>
+    </div>
+    <section id="new-product-section" class="content-section">
+        <p class="section-title">PRODUK TERBARU</p>
+        <div class="product-container">
+            <div class="card-product">
+                <div class="image-container">
+                    <img src="{{ asset('/assets/images/sample.png') }}" alt="img-product">
+                </div>
+                <div class="product-info">
+                    <p class="product-name">Samsung Galaxy S23 FE - 8GB+256GB asDqwe SDqueiasj asdu</p>
+                </div>
+            </div>
+            <div class="card-product"></div>
+            <div class="card-product"></div>
+            <div class="card-product"></div>
+            <div class="card-product"></div>
+        </div>
+    </section>
 @endsection
 
 @section('css')
@@ -28,7 +45,6 @@
                 arrows: true,
                 autoplay: true,
                 autoplaySpeed: 1000,
-                centerMode: true,
                 // responsive: [
                 //     {
                 //         breakpoint: 1024,
