@@ -44,6 +44,16 @@
 <div class="content-wrapper">
     @yield('content')
 </div>
+<div class="custom-footer row">
+    <div class="col-3 d-flex justify-content-center align-items-center">
+        <div class="footer-brand-container">
+            <img src="{{ asset('/assets/images/vertical-logo.jpeg') }}" width="120" style="border-radius: 8px;">
+        </div>
+    </div>
+    <div class="col-3"></div>
+    <div class="col-3"></div>
+    <div class="col-3"></div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
