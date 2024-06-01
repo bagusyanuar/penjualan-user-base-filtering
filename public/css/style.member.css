@@ -181,7 +181,7 @@ a.custom-nav-brand img {
     font-size: 0.9em;
     color: var(--bg-primary);
     font-weight: 600;
-    margin-bottom: 0;
+    margin-bottom: 8px;
     height: 45px;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -198,11 +198,28 @@ a.custom-nav-brand img {
     margin-bottom: 0;
 }
 
+
+.product-info .product-rate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+
+}
+
+.product-rate i {
+    color: var(--warning);
+}
+
+.product-rate span {
+    color: var(--dark-tint);
+    font-size: 0.8em;
+    line-height: 0;
+}
+
 .product-info .product-price {
-    font-size: 1.25em;
     color: var(--bg-primary);
-    width: 100%;
-    font-weight: 700;
-    text-align: left;
+    font-size: 1em;
+    font-weight: 600;
     margin-bottom: 0;
 }

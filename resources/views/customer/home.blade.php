@@ -16,8 +16,15 @@
                 <div class="image-container">
                     <img src="{{ asset('/assets/images/sample.png') }}" alt="img-product">
                 </div>
-                <div class="product-info">
+                <div class="product-info w-100">
                     <p class="product-name">Samsung Galaxy S23 FE - 8GB+256GB asDqwe SDqueiasj asdu</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="product-rate">
+                            <i class='bx bxs-star'></i>
+                            <span>5</span>
+                        </div>
+                        <p class="product-price">Rp.5.000.000</p>
+                    </div>
                 </div>
             </div>
             <div class="card-product"></div>
