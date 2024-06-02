@@ -45,13 +45,34 @@
     @yield('content')
 </div>
 <div class="custom-footer row">
-    <div class="col-3 d-flex justify-content-center align-items-center">
-        <div class="footer-brand-container">
+    <div class="col-3 d-flex justify-content-center align-items-center flex-column">
+{{--        <div class="footer-brand-container">--}}
             <img src="{{ asset('/assets/images/vertical-logo.jpeg') }}" width="120" style="border-radius: 8px;">
-        </div>
+{{--        </div>--}}
+        <p style="color: white; font-size: 0.8em;">Toko Handphone Terpercaya</p>
     </div>
-    <div class="col-3"></div>
-    <div class="col-3"></div>
+    <div class="col-3 d-flex flex-column">
+        <p style="color: white; font-size: 1em; font-weight: 500; letter-spacing: 2px">HARI PONSEL</p>
+        <a href="#" class="footer-link mb-1">BERANDA</a>
+        <a href="#" class="footer-link mb-1">PRODUCT</a>
+        <a href="#" class="footer-link mb-1">TENTANG KAMI</a>
+        <a href="#" class="footer-link">KONTAK</a>
+    </div>
+    <div class="col-3">
+        <p style="color: white; font-size: 1em; font-weight: 500; letter-spacing: 2px">HUBUNGI KAMI</p>
+        <a href="#" class="footer-link d-flex align-items-center mb-1">
+            <i class='bx bxl-whatsapp me-1'></i>
+            <span>(+62) 8963266623</span>
+        </a>
+        <a href="#" class="footer-link d-flex align-items-center mb-1">
+            <i class='bx bxl-instagram me-1'></i>
+            <span>@hari.ponsel</span>
+        </a>
+        <a href="#" class="footer-link d-flex align-items-center mb-1">
+            <i class='bx bx-map me-1'></i>
+            <span>jl. urip soemohardjo no. 16, solo</span>
+        </a>
+    </div>
     <div class="col-3"></div>
 </div>
 

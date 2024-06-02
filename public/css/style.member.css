@@ -87,6 +87,12 @@ a.custom-nav-brand img {
     align-items: center;
 }
 
+.footer-link {
+    text-decoration: none;
+    color: white;
+    font-size: 0.8em;
+}
+
 .content-wrapper {
     padding: 1.5rem 2.5rem;
 }
