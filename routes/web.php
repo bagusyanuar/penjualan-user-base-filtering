@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\Customer\HomeController::class, 'index'])->name('customer.home');
 
+Route::group(['prefix' => 'product'], function () {
+    Route::get('/', [\App\Http\Controllers\Customer\ProductController::class, 'index'])->name('customer.product');
+});
+
 Route::group(['prefix' => 'admin'], function () {
     Route::match(['post', 'get'], '/', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
 
@@ -22,15 +26,15 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::group(['prefix' => 'kategori'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('admin.category');
-        Route::match(['post', 'get'],'/add', [\App\Http\Controllers\Admin\CategoryController::class, 'add'])->name('admin.category.add');
-        Route::match(['post', 'get'],'/{id}/edit', [\App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('admin.category.edit');
+        Route::match(['post', 'get'], '/add', [\App\Http\Controllers\Admin\CategoryController::class, 'add'])->name('admin.category.add');
+        Route::match(['post', 'get'], '/{id}/edit', [\App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('admin.category.edit');
         Route::post('/{id}/delete', [\App\Http\Controllers\Admin\CategoryController::class, 'delete'])->name('admin.category.delete');
     });
 
     Route::group(['prefix' => 'product'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('admin.product');
-        Route::match(['post', 'get'],'/add', [\App\Http\Controllers\Admin\ProductController::class, 'add'])->name('admin.product.add');
-        Route::match(['post', 'get'],'/{id}/edit', [\App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('admin.product.edit');
+        Route::match(['post', 'get'], '/add', [\App\Http\Controllers\Admin\ProductController::class, 'add'])->name('admin.product.add');
+        Route::match(['post', 'get'], '/{id}/edit', [\App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('admin.product.edit');
         Route::post('/{id}/delete', [\App\Http\Controllers\Admin\ProductController::class, 'delete'])->name('admin.product.delete');
     });
 });

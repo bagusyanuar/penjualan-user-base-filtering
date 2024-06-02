@@ -29,8 +29,9 @@
         <img src="{{ asset('/assets/images/horizontal-logo.jpeg') }}" alt="brand-image">
     </a>
     <div class="nav-link-container">
-        <a href="{{ route('customer.home') }}" class="nav-link-item {{ request()->is('/') ? 'active' : '' }}">Beranda</a>
-        <a href="#" class="nav-link-item {{ request()->is('product*') ? 'active' : '' }}">Product</a>
+        <a href="{{ route('customer.home') }}"
+           class="nav-link-item {{ request()->is('/') ? 'active' : '' }}">Beranda</a>
+        <a href="{{ route('customer.product') }}" class="nav-link-item {{ request()->is('product*') ? 'active' : '' }}">Product</a>
         <a href="#" class="nav-link-item">Tentang Kami</a>
         <a href="#" class="nav-link-item">Kontak</a>
     </div>
@@ -41,20 +42,20 @@
     </div>
 </div>
 
-<div class="content-wrapper">
+<div class="content-wrapper" style="min-height: 350px;">
     @yield('content')
 </div>
 <div class="custom-footer row">
     <div class="col-3 d-flex justify-content-center align-items-center flex-column">
-{{--        <div class="footer-brand-container">--}}
-            <img src="{{ asset('/assets/images/vertical-logo.jpeg') }}" width="120" style="border-radius: 8px;">
-{{--        </div>--}}
+        {{--        <div class="footer-brand-container">--}}
+        <img src="{{ asset('/assets/images/vertical-logo.jpeg') }}" width="120" style="border-radius: 8px;">
+        {{--        </div>--}}
         <p style="color: white; font-size: 0.8em;">Toko Handphone Terpercaya</p>
     </div>
     <div class="col-3 d-flex flex-column">
         <p style="color: white; font-size: 1em; font-weight: 500; letter-spacing: 2px">HARI PONSEL</p>
-        <a href="#" class="footer-link mb-1">BERANDA</a>
-        <a href="#" class="footer-link mb-1">PRODUCT</a>
+        <a href="{{ route('customer.home') }}" class="footer-link mb-1">BERANDA</a>
+        <a href="{{ route('customer.product') }}" class="footer-link mb-1">PRODUCT</a>
         <a href="#" class="footer-link mb-1">TENTANG KAMI</a>
         <a href="#" class="footer-link">KONTAK</a>
     </div>

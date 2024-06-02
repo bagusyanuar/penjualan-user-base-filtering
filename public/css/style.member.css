@@ -320,4 +320,36 @@ a.custom-nav-brand img {
     font-weight: 500;
 }
 
+.categories-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 210px;
+    padding-right: 10px;
+    border-right: 1px solid grey;
+}
+
+.categories-sidebar .categories-link {
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--dark);
+    text-decoration: none;
+    -webkit-transition: background-color .5s ease-in-out, color .3s ease-in-out;
+    -moz-transition: background-color .5s ease-in-out, color .3s ease-in-out;
+    -o-transition: background-color .5s ease-in-out, color .3s ease-in-out;
+    transition: background-color .5s ease-in-out, color .3s ease-in-out;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.categories-sidebar .categories-link:hover {
+    background-color: var(--bg-primary);
+    color: white;
+}
+
+.categories-sidebar .categories-link.active {
+    background-color: var(--bg-primary);
+    color: white;
+}
+
 
