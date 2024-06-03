@@ -191,7 +191,7 @@ a.custom-nav-brand img {
 }
 
 .image-container img {
-    width: auto;
+    /*width: auto;*/
     height: 150px;
     object-fit: cover;
     object-position: center center;
@@ -372,7 +372,7 @@ a.custom-nav-brand img {
     justify-content: center;
 }
 
-.image-container img {
+.product-detail-image-container .image-container img {
     height: 380px;
     width: 380px;
     object-fit: cover;
