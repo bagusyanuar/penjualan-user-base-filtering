@@ -352,4 +352,32 @@ a.custom-nav-brand img {
     color: white;
 }
 
+.product-detail-container {
+    width: 100%;
+    display: flex;
+    align-items: start;
+}
+
+.product-detail-image-container {
+    flex: 1;
+}
+
+.product-detail-image-container .image-container {
+    width: 400px;
+    height: 400px;
+    border: 1px solid var(--dark-tint);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-container img {
+    height: 380px;
+    width: 380px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 12px;
+}
+
 

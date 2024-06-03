@@ -17,6 +17,7 @@ Route::get('/', [\App\Http\Controllers\Customer\HomeController::class, 'index'])
 
 Route::group(['prefix' => 'product'], function () {
     Route::get('/', [\App\Http\Controllers\Customer\ProductController::class, 'index'])->name('customer.product');
+    Route::get('/{id}', [\App\Http\Controllers\Customer\ProductController::class, 'detail'])->name('customer.product.detail');
 });
 
 Route::group(['prefix' => 'admin'], function () {
