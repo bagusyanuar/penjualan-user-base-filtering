@@ -17,5 +17,8 @@
                 <img src="{{ $product->gambar }}" alt="product-image">
             </div>
         </div>
+        <div class="product-detail-info-container">
+            <p class="product-name">{{ $product->nama }}</p>
+        </div>
     </div>
 @endsection

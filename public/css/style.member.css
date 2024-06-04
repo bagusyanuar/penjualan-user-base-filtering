@@ -356,9 +356,14 @@ a.custom-nav-brand img {
     width: 100%;
     display: flex;
     align-items: start;
+    gap: 0.5rem;
 }
 
 .product-detail-image-container {
+    flex: 1;
+}
+
+.product-detail-info-container {
     flex: 1;
 }
 
@@ -379,5 +384,11 @@ a.custom-nav-brand img {
     object-position: center center;
     border-radius: 12px;
 }
+
+.product-detail-info-container .product-name {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
 
 
