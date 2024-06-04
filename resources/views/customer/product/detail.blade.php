@@ -19,6 +19,18 @@
         </div>
         <div class="product-detail-info-container">
             <p class="product-name">{{ $product->nama }}</p>
+            <div class="d-flex align-items-center selling-info mb-3">
+                <span class="product-sell-info me-1">Terjual</span>
+                <span class="me-2">100+</span>
+                <i class="bx bxs-star me-1"></i>
+                <span class="product-sell-info">4</span>
+            </div>
+            <p class="product-price mb-3">Rp5.500.000</p>
+            <p style="color: var(--bg-primary); font-weight: bold; font-size: 1em;">Deskripsi</p>
+            <div>{!! $product->deskripsi !!}</div>
+        </div>
+        <div class="product-detail-action-container">
+            <p style="font-weight: bold; color: var(--dark);">Atur Jumlah</p>
         </div>
     </div>
 @endsection
