@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 
 
 use App\Helper\CustomController;
+use App\Models\BiayaPengiriman;
 
 class KeranjangController extends CustomController
 {
@@ -15,6 +16,9 @@ class KeranjangController extends CustomController
 
     public function index()
     {
-        return view('customer.keranjang');
+        $shipments = BiayaPengiriman::all();
+        return view('customer.keranjang')->with([
+            'shipments' => $shipments
+        ]);
     }
 }
