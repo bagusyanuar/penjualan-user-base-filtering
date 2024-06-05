@@ -1,7 +1,7 @@
 @extends('customer.layout')
 
 @section('content')
-    <div class="w-100 d-flex justify-content-between align-items-center mb-5">
+    <div class="w-100 d-flex justify-content-between align-items-center mb-3">
         <p class="page-title">Product Kami</p>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
@@ -25,12 +25,47 @@
                 <i class="bx bxs-star me-1"></i>
                 <span class="product-sell-info">4</span>
             </div>
-            <p class="product-price mb-3">Rp5.500.000</p>
+            <p class="product-price mb-3">Rp{{ number_format($product->harga, 0, ',', '.') }}</p>
             <p style="color: var(--bg-primary); font-weight: bold; font-size: 1em;">Deskripsi</p>
-            <div>{!! $product->deskripsi !!}</div>
+            <div class="description-wrapper">{!! $product->deskripsi !!}</div>
         </div>
         <div class="product-detail-action-container">
             <p style="font-weight: bold; color: var(--dark);">Atur Jumlah</p>
+            <p style="font-size: 0.8em; color: var(--dark); margin-bottom: 0;">Stok: <span
+                    style="font-weight: bold; color: var(--bg-primary)">Sisa {{ 4 }}</span></p>
+            <div class="qty-change-container mb-3">
+                <a href="#" class="qty-change" data-type="minus"><i class='bx bx-minus'></i></a>
+                <input type="number" value="1" id="qty-value"/>
+                <a href="#" class="qty-change" data-type="plus"><i class='bx bx-plus'></i></a>
+            </div>
+            <div class="d-flex align-items-center justify-content-between" style="font-size: 1em;">
+                <span style="color: var(--dark-tint);">Subtotal</span>
+                <span id="lbl-sub-total" style="color: var(--dark); font-weight: 600;">Rp{{ number_format($product->harga, 0, ',', '.') }}</span>
+            </div>
+            <hr class="custom-divider" />
+            <a href="#" class="btn-cart mb-1">Keranjang</a>
+            <a href="#" class="btn-shop">Beli</a>
         </div>
     </div>
+    <hr class="custom-divider" />
+    <p class="section-title">Rekomendasi Produk Lainnya</p>
+@endsection
+
+@section('js')
+    <script src="{{ asset('/js/helper.js') }}"></script>
+    <script>
+        var strPrice = '{{ $product->harga }}';
+
+        function eventChangeSubTotal(qty = 0) {
+            let intPrice = parseInt(strPrice);
+            let subTotal = intPrice * qty;
+            $('#lbl-sub-total').html('Rp'+subTotal.toLocaleString('id-ID'));
+        }
+
+        $(document).ready(function () {
+            eventQtyChange(4, function (newVal) {
+                eventChangeSubTotal(newVal)
+            })
+        })
+    </script>
 @endsection

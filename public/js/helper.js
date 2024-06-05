@@ -143,3 +143,30 @@ async function BaseDeleteHandler(url, id) {
         ErrorAlert('Error', error_message.message);
     }
 }
+
+function eventQtyChange(max = 99, callback = function () {}) {
+    $('.qty-change').on('click', function (e) {
+        e.preventDefault();
+        let type = this.dataset.type;
+        qtyChangeHandler(type, max, function (newVal) {
+            callback(newVal)
+        })
+    })
+}
+
+function qtyChangeHandler(type, max, callback = function () {}) {
+    let qtyTargetEl = $('#qty-value');
+    let qtyTargetVal = qtyTargetEl.val();
+    let currentVal = parseInt(qtyTargetVal);
+    if (type === 'plus' && currentVal < max) {
+        let newVal = currentVal + 1;
+        qtyTargetEl.val(newVal);
+        callback(newVal);
+    }
+
+    if (type === 'minus' && currentVal > 1) {
+        let newVal = currentVal - 1;
+        qtyTargetEl.val(newVal);
+        callback(newVal);
+    }
+}
