@@ -71,8 +71,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.product') }}"
-                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/product*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.shipment') }}"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/biaya-pengiriman*') ? 'active' : '' }}">
                         <i class='bx bx-car'></i>
                         <p>Biaya Pengiriman</p>
                     </a>

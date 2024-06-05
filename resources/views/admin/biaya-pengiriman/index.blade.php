@@ -16,7 +16,7 @@
     <div class="card-content">
         <div class="content-header mb-3">
             <p class="header-title">Data Biaya Pengiriman</p>
-            <a href="{{ route('admin.category.add') }}" class="btn-add">
+            <a href="{{ route('admin.shipment.add') }}" class="btn-add">
                 <i class='bx bx-plus'></i>
                 <span>Tambah Biaya Pengiriman</span>
             </a>
@@ -27,7 +27,7 @@
             <tr>
                 <th width="5%" class="text-center">#</th>
                 <th>Kota</th>
-                <th width="12%">Harga (Rp.)</th>
+                <th width="15%" class="text-end">Harga (Rp.)</th>
                 <th width="10%" class="text-center">Aksi</th>
             </tr>
             </thead>
@@ -59,8 +59,15 @@
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false, className: 'text-center middle-header',},
                     {
-                        data: 'nama',
+                        data: 'kota',
                         className: 'middle-header',
+                    },
+                    {
+                        data: 'harga',
+                        className: 'middle-header text-end',
+                        render: function (data) {
+                            return data.toLocaleString('id-ID');
+                        }
                     },
                     {
                         data: null,
