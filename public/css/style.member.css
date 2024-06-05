@@ -440,7 +440,7 @@ a.custom-nav-brand img {
     width: 30px;
 }
 
-.qty-change-container a i{
+.qty-change-container a i {
     color: var(--dark);
 }
 
@@ -456,7 +456,7 @@ a.custom-nav-brand img {
     -moz-appearance: textfield;
 }
 
-.qty-change-container input::-webkit-inner-spin-button,  .qty-change-container input::-webkit-inner-spin-button{
+.qty-change-container input::-webkit-inner-spin-button, .qty-change-container input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
@@ -504,6 +504,50 @@ a.custom-nav-brand img {
 
 .description-wrapper table tbody tr td {
     background-color: transparent !important;
+}
+
+.cart-list-container {
+    flex-grow: 1;
+}
+
+.cart-action-container {
+    width: 320px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 1rem 1rem;
+}
+
+.btn-action-primary {
+    text-decoration: none;
+    padding: 0.75rem 2.5rem;
+    width: 100%;
+    background-color: var(--bg-primary);
+    cursor: pointer;
+    color: white;
+    border: 1px solid var(--bg-primary);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+    font-weight: 500;
+}
+
+.cart-item-container {
+    width: 100%;
+    border-radius: 12px;
+    padding: 1rem 1rem;
+    background-color: white;
+    display: flex;
+}
+
+.cart-item-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+    object-position: center center;
+    border: 1px solid var(--dark-tint);
 }
 
 
