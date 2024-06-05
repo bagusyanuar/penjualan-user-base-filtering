@@ -13,8 +13,43 @@
     <div class="d-flex" style="gap: 1rem">
         <div class="cart-list-container">
             <p style="font-size: 0.8em; font-weight: bold; color: var(--dark);">Daftar Belanja</p>
-            <div class="cart-item-container">
+            <div class="cart-item-container mb-3">
                 <img src="{{ asset('/assets/images/sample.png') }}" alt="product-image">
+                <div class="flex-grow-1">
+                    <p style="color: var(--dark); font-size: 1em; margin-bottom: 0; font-weight: bold">IPhone 13 Pro MAX</p>
+                    <p style="margin-bottom: 0; color: var(--dark-tint); font-size: 0.8em;">IPhone</p>
+                    <div class="d-flex align-items-center" style="font-size: 0.8em;">
+                        <span style="color: var(--dark-tint);" class="me-1">Jumlah: </span>
+                        <span style="color: var(--dark); font-weight: bold;">3 PCS</span>
+                    </div>
+                    <div class="d-flex justify-content-end w-100">
+                        <a href="#" class="btn-delete-item">
+                            <i class='bx bx-trash'></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end" style="width: 150px;">
+                    <p style="font-size: 1em; font-weight: bold; color: var(--dark);">Rp13.000.000</p>
+                </div>
+            </div>
+            <div class="cart-item-container mb-3">
+                <img src="{{ asset('/assets/images/sample.png') }}" alt="product-image">
+                <div class="flex-grow-1">
+                    <p style="color: var(--dark); font-size: 1em; margin-bottom: 0; font-weight: bold">IPhone 13 Pro MAX</p>
+                    <p style="margin-bottom: 0; color: var(--dark-tint); font-size: 0.8em;">IPhone</p>
+                    <div class="d-flex align-items-center" style="font-size: 0.8em;">
+                        <span style="color: var(--dark-tint);" class="me-1">Jumlah: </span>
+                        <span style="color: var(--dark); font-weight: bold;">3 PCS</span>
+                    </div>
+                    <div class="d-flex justify-content-end w-100">
+                        <a href="#" class="btn-delete-item">
+                            <i class='bx bx-trash'></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end" style="width: 150px;">
+                    <p style="font-size: 1em; font-weight: bold; color: var(--dark);">Rp13.000.000</p>
+                </div>
             </div>
         </div>
         <div class="cart-action-container">

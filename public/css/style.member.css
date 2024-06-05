@@ -512,6 +512,7 @@ a.custom-nav-brand img {
 
 .cart-action-container {
     width: 320px;
+    height: fit-content;
     background-color: white;
     border-radius: 12px;
     padding: 1rem 1rem;
@@ -539,6 +540,7 @@ a.custom-nav-brand img {
     padding: 1rem 1rem;
     background-color: white;
     display: flex;
+    gap: 1rem;
 }
 
 .cart-item-container img {
@@ -549,5 +551,12 @@ a.custom-nav-brand img {
     object-position: center center;
     border: 1px solid var(--dark-tint);
 }
+
+.cart-item-container .btn-delete-item {
+    text-decoration: none;
+    color: var(--dark-tint);
+    font-size: 20px !important;
+}
+
 
 

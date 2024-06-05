@@ -24,6 +24,10 @@ Route::group(['prefix' => 'keranjang'], function (){
     Route::match(['post', 'get'], '/', [\App\Http\Controllers\Customer\KeranjangController::class, 'index'])->name('customer.cart');
 });
 
+Route::group(['prefix' => 'pengiriman'], function (){
+    Route::match(['post', 'get'], '/', [\App\Http\Controllers\Customer\PengirimanController::class, 'index'])->name('customer.shipment');
+});
+
 Route::group(['prefix' => 'admin'], function () {
     Route::match(['post', 'get'], '/', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
 
