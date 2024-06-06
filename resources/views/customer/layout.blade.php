@@ -36,7 +36,7 @@
         <a href="#" class="nav-link-item">Kontak</a>
     </div>
     <div class="nav-menu-container">
-        <a href="#" class="nav-menu-item">
+        <a href="{{ route('customer.login') }}" class="nav-menu-item">
             <i class='bx bx-user'></i>
         </a>
     </div>

@@ -93,6 +93,59 @@ a.custom-nav-brand img {
     font-size: 0.8em;
 }
 
+/*auth part*/
+.login-body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-background);
+}
+
+.card-login {
+    background-color: white;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    width: 650px;
+    height: 400px;
+    display: flex;
+}
+
+.card-login .form-login-container {
+    width: 300px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.5rem;
+}
+
+.form-login-container img {
+    width: 120px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.card-login .image-login-container {
+    width: 350px;
+    height: 100%;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.image-login-container img {
+    width: 350px;
+    height: 100%;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+/*content part*/
 .content-wrapper {
     padding: 1.5rem 2.5rem;
 }

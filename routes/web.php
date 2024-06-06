@@ -14,18 +14,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\Customer\HomeController::class, 'index'])->name('customer.home');
+Route::match(['post', 'get'], '/login', [\App\Http\Controllers\Customer\LoginController::class, 'login'])->name('customer.login');
+Route::match(['post', 'get'], '/register', [\App\Http\Controllers\Customer\RegisterController::class, 'register'])->name('customer.register');
+Route::get('/logout', [\App\Http\Controllers\Customer\LoginController::class, 'logout'])->name('customer.logout');
 
 Route::group(['prefix' => 'product'], function () {
     Route::get('/', [\App\Http\Controllers\Customer\ProductController::class, 'index'])->name('customer.product');
     Route::get('/{id}', [\App\Http\Controllers\Customer\ProductController::class, 'detail'])->name('customer.product.detail');
 });
 
-Route::group(['prefix' => 'keranjang'], function (){
+Route::group(['prefix' => 'keranjang'], function () {
     Route::match(['post', 'get'], '/', [\App\Http\Controllers\Customer\KeranjangController::class, 'index'])->name('customer.cart');
 });
 
-Route::group(['prefix' => 'pengiriman'], function (){
+Route::group(['prefix' => 'pengiriman'], function () {
     Route::match(['post', 'get'], '/', [\App\Http\Controllers\Customer\PengirimanController::class, 'index'])->name('customer.shipment');
+});
+
+Route::group(['prefix' => 'akun-saya'], function () {
+    Route::match(['post', 'get'], '/', [\App\Http\Controllers\Customer\AkunController::class, 'index'])->name('customer.account');
 });
 
 Route::group(['prefix' => 'admin'], function () {
