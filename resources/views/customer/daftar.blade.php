@@ -49,7 +49,7 @@
                 <label for="email" class="form-label d-none"></label>
                 <div class="text-group-container mb-2">
                     <i class='bx bx-envelope'></i>
-                    <input type="text" placeholder="email" class="text-group-input" id="email"
+                    <input type="email" placeholder="email" class="text-group-input" id="email"
                            name="email">
                 </div>
                 <label for="username" class="form-label d-none"></label>
