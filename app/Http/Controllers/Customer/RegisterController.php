@@ -39,7 +39,7 @@ class RegisterController extends CustomController
             try {
                 $validator = Validator::make($this->request->all(), $this->rule, $this->message);
                 if ($validator->fails()) {
-                    return redirect()->back()->withErrors($validator)->withInput();
+                    return redirect()->back()->with('failed', 'harap mengisi kolom dengan benar...')->withErrors($validator)->withInput();
                 }
                 $data_account = [
                     'email' => $this->postField('email'),

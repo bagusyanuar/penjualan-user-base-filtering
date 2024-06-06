@@ -18,10 +18,26 @@
     <link href="{{ asset('/css/style.member.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/sweetalert2.css') }}" rel="stylesheet">
     <script src="{{ asset('/js/sweetalert2.min.js')}}"></script>
-    @yield('css')
     <title>HARI PONSEL | LOGIN</title>
 </head>
 <body>
+@if (\Illuminate\Support\Facades\Session::has('failed'))
+    <script>
+        Swal.fire("Ooops", '{{ \Illuminate\Support\Facades\Session::get('failed') }}', "error")
+    </script>
+@endif
+@if (\Illuminate\Support\Facades\Session::has('success'))
+    <script>
+        Swal.fire({
+            title: 'Success',
+            text: '{{ \Illuminate\Support\Facades\Session::get('success') }}',
+            icon: 'success',
+            timer: 700
+        }).then(() => {
+            window.location.href = '/';
+        })
+    </script>
+@endif
 <div class="login-body">
     <div class="card-login">
         <form method="post" id="form-login">
@@ -44,7 +60,7 @@
                            id="password" name="password">
                 </div>
 
-                <a href="#" class="btn-action-primary mb-3">Login</a>
+                <a href="#" class="btn-action-primary mb-3" id="btn-login">Login</a>
                 <div class="d-flex align-items-center justify-content-center w-100" style="font-size: 0.7em">
                     <span class="me-1" style="color: var(--dark-tint)">Belum punya akun?</span>
                     <a href="{{ route('customer.register') }}" style="color: var(--bg-primary); text-decoration: none; font-weight: bold;">Daftar</a>
@@ -63,6 +79,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
-@yield('js')
+<script src="{{ asset('/js/helper.js') }}"></script>
+<script>
+    function eventLogin() {
+        $('#btn-login').on('click', function (e) {
+            e.preventDefault();
+            $('#form-login').submit();
+        })
+    }
+
+    $(document).ready(function () {
+        eventLogin();
+    })
+</script>
 </body>
 </html>

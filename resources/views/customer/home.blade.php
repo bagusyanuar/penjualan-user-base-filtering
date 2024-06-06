@@ -9,36 +9,38 @@
             <img src="{{ asset('/assets/images/banner-hp-1.webp') }}" alt="img-banner">
         </div>
     </div>
-    <section id="new-product-section" class="content-section mb-5">
+    <section id="new-product-section" class="content-section mb-3">
         <p class="section-title">PRODUK TERBARU</p>
-        <div class="product-container">
-            <div class="card-product">
-                <div class="image-container">
-                    <img src="{{ asset('/assets/images/sample.png') }}" alt="img-product">
-                </div>
-                <div class="product-info w-100">
-                    <p class="product-name">Samsung Galaxy S23 FE - 8GB+256GB asDqwe SDqueiasj asdu</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="product-rate">
-                            <i class='bx bxs-star'></i>
-                            <span>5</span>
+        <div class="product-container mb-3">
+            @foreach($products as $product)
+                <div class="card-product" data-id="{{ $product->id }}">
+                    <div class="image-container">
+                        <img src="{{ $product->gambar }}" alt="img-product">
+                    </div>
+                    <div class="product-info w-100">
+                        <p class="product-name">{{ $product->nama }}</p>
+{{--                        <p style="font-size: 0.8em; color: var(--dark-tint);margin-bottom: 0">{{ $product->category->nama }}</p>--}}
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="product-rate">
+                                <i class='bx bxs-star'></i>
+                                <span>5</span>
+                            </div>
+                            <p class="product-price">Rp.{{ number_format($product->harga, 0, ',', '.') }}</p>
                         </div>
-                        <p class="product-price">Rp.5.000.000</p>
+                    </div>
+                    <div class="product-action">
+                        <a href="#" class="btn-cart" data-id="{{ $product->id }}">
+                            <i class='bx bx-cart-alt'></i>
+                        </a>
+                        <a href="#" class="btn-shop" data-id="{{ $product->id }}">
+                            <i class='bx bx-shopping-bag'></i>
+                        </a>
                     </div>
                 </div>
-                <div class="product-action">
-                    <a href="#" class="btn-cart">
-                        <i class='bx bx-cart-alt'></i>
-                    </a>
-                    <a href="#" class="btn-shop">
-                        <i class='bx bx-shopping-bag'></i>
-                    </a>
-                </div>
-            </div>
-            <div class="card-product"></div>
-            <div class="card-product"></div>
-            <div class="card-product"></div>
-            <div class="card-product"></div>
+            @endforeach
+        </div>
+        <div class="w-100 d-flex justify-content-center">
+            <a href="{{ route('customer.product') }}" style="font-size: 1em; color: var(--bg-primary); text-decoration: none;">Lihat Produk Lainnya</a>
         </div>
     </section>
     <section id="our-brand" class="content-section">
@@ -106,9 +108,29 @@
             })
         }
 
+        function eventProductAction() {
+            $('.card-product').on('click', function () {
+                let id = this.dataset.id;
+                window.location.href = '/product/' + id;
+            })
+
+            $('.btn-cart').on('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                let id = this.dataset.id;
+            })
+
+            $('.btn-shop').on('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                let id = this.dataset.id;
+            })
+        }
+
         $(document).ready(function () {
             setupSlickBanner();
             setupSlickBrand();
+            eventProductAction();
         })
     </script>
 @endsection

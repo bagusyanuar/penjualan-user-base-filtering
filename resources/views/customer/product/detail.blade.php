@@ -1,6 +1,13 @@
 @extends('customer.layout')
 
 @section('content')
+    <div class="lazy-backdrop" id="overlay-loading">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <div class="spinner-border text-light" role="status">
+            </div>
+            <p class="text-light">Sedang Menyimpan Data...</p>
+        </div>
+    </div>
     <div class="w-100 d-flex justify-content-between align-items-center mb-3">
         <p class="page-title">Product Kami</p>
         <nav aria-label="breadcrumb">
@@ -32,7 +39,7 @@
         <div class="product-detail-action-container">
             <p style="font-weight: bold; color: var(--dark);">Atur Jumlah</p>
             <p style="font-size: 0.8em; color: var(--dark); margin-bottom: 0;">Stok: <span
-                    style="font-weight: bold; color: var(--bg-primary)">Sisa {{ 4 }}</span></p>
+                    style="font-weight: bold; color: var(--bg-primary)">Sisa {{ $product->qty }}</span></p>
             <div class="qty-change-container mb-3">
                 <a href="#" class="qty-change" data-type="minus"><i class='bx bx-minus'></i></a>
                 <input type="number" value="1" id="qty-value"/>
@@ -40,14 +47,20 @@
             </div>
             <div class="d-flex align-items-center justify-content-between" style="font-size: 1em;">
                 <span style="color: var(--dark-tint);">Subtotal</span>
-                <span id="lbl-sub-total" style="color: var(--dark); font-weight: 600;">Rp{{ number_format($product->harga, 0, ',', '.') }}</span>
+                <span id="lbl-sub-total"
+                      style="color: var(--dark); font-weight: 600;">Rp{{ number_format($product->harga, 0, ',', '.') }}</span>
             </div>
-            <hr class="custom-divider" />
-            <a href="#" class="btn-cart mb-1">Keranjang</a>
-            <a href="#" class="btn-shop">Beli</a>
+            <hr class="custom-divider"/>
+            @auth()
+                <a href="#" class="btn-cart mb-1" id="btn-cart" data-id="{{ $product->id }}">Keranjang</a>
+                <a href="#" class="btn-shop" id="btn-shop" data-id="{{ $product->id }}">Beli</a>
+            @else
+                <a href="{{ route('customer.login') }}" class="btn-cart mb-1">Keranjang</a>
+                <a href="{{ route('customer.login') }}" class="btn-shop">Beli</a>
+            @endauth
         </div>
     </div>
-    <hr class="custom-divider" />
+    <hr class="custom-divider"/>
     <p class="section-title">Rekomendasi Produk Lainnya</p>
 @endsection
 
@@ -55,17 +68,52 @@
     <script src="{{ asset('/js/helper.js') }}"></script>
     <script>
         var strPrice = '{{ $product->harga }}';
+        var strQTY = '{{ $product->qty }}';
+        var cartURL = '{{ route('customer.cart') }}';
 
         function eventChangeSubTotal(qty = 0) {
             let intPrice = parseInt(strPrice);
             let subTotal = intPrice * qty;
-            $('#lbl-sub-total').html('Rp'+subTotal.toLocaleString('id-ID'));
+            $('#lbl-sub-total').html('Rp' + subTotal.toLocaleString('id-ID'));
+        }
+
+        function eventAddToCart() {
+            $('#btn-cart').on('click', function (e) {
+                e.preventDefault();
+                let id = this.dataset.id;
+                addToCartHandler(id)
+            })
+        }
+
+        async function addToCartHandler(id) {
+            try {
+                let qty = $('#qty-value').val();
+                blockLoading(true);
+                await $.post(cartURL, {
+                    id, qty
+                });
+                blockLoading(false);
+                Swal.fire({
+                    title: 'Success',
+                    text: 'Berhasil menambahkan product ke keranjang...',
+                    icon: 'success',
+                    timer: 700
+                }).then(() => {
+                    window.location.reload();
+                })
+            }catch (e) {
+                blockLoading(false);
+                let error_message = JSON.parse(e.responseText);
+                ErrorAlert('Error', error_message.message);
+            }
         }
 
         $(document).ready(function () {
-            eventQtyChange(4, function (newVal) {
+            eventQtyChange(parseInt(strQTY), function (newVal) {
                 eventChangeSubTotal(newVal)
-            })
+            });
+            eventAddToCart();
+
         })
     </script>
 @endsection

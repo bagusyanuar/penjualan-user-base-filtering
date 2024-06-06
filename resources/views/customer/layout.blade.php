@@ -36,9 +36,19 @@
         <a href="#" class="nav-link-item">Kontak</a>
     </div>
     <div class="nav-menu-container">
-        <a href="{{ route('customer.login') }}" class="nav-menu-item">
-            <i class='bx bx-user'></i>
-        </a>
+        @auth()
+            <a href="{{ route('customer.cart') }}" class="nav-menu-item">
+                <i class='bx bx-cart-alt'></i>
+                <div class="custom-badge"><span>4</span></div>
+            </a>
+            <a href="{{ route('customer.account') }}" class="nav-menu-item">
+                <i class='bx bx-user'></i>
+            </a>
+        @else
+            <a href="{{ route('customer.login') }}" class="nav-menu-item">
+                <i class='bx bx-user'></i>
+            </a>
+        @endauth
     </div>
 </div>
 

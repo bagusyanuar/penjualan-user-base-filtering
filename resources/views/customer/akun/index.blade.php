@@ -31,6 +31,7 @@
         <div class="categories-sidebar">
             <a href="{{ route('customer.account') }}" class="categories-link active">Akun Saya</a>
             <a href="#" class="categories-link">Pesanan</a>
+            <a href="{{ route('customer.logout') }}" class="categories-link">Logout</a>
         </div>
         <div class="flex-grow-1" style="padding-left: 25px">
             <form method="post" id="form-akun">

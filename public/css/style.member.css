@@ -59,6 +59,25 @@ a.custom-nav-brand img {
     gap: 1rem;
 }
 
+.nav-menu-item {
+    position: relative;
+}
+
+.nav-menu-item .custom-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    background-color: var(--danger);
+    font-size: 8px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+}
 
 .nav-menu-item i {
     font-size: 16px;

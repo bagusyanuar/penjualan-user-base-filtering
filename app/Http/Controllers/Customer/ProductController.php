@@ -45,4 +45,6 @@ class ProductController extends CustomController
             ->firstOrFail();
         return view('customer.product.detail')->with(['product' => $product]);
     }
+
+
 }
