@@ -25,6 +25,8 @@ Route::group(['prefix' => 'product'], function () {
 
 Route::group(['prefix' => 'keranjang'], function () {
     Route::match(['post', 'get'], '/', [\App\Http\Controllers\Customer\KeranjangController::class, 'index'])->name('customer.cart');
+    Route::post('/checkout', [\App\Http\Controllers\Customer\KeranjangController::class, 'checkout'])->name('customer.checkout');
+    Route::post('/{id}/delete', [\App\Http\Controllers\Customer\KeranjangController::class, 'delete'])->name('customer.delete');
 });
 
 Route::group(['prefix' => 'pengiriman'], function () {

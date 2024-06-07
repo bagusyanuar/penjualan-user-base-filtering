@@ -588,6 +588,7 @@ a.custom-nav-brand img {
     background-color: white;
     border-radius: 12px;
     padding: 1rem 1rem;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
 }
 
 .btn-action-primary {
@@ -613,6 +614,7 @@ a.custom-nav-brand img {
     background-color: white;
     display: flex;
     gap: 1rem;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
 }
 
 .cart-item-container img {
