@@ -37,6 +37,10 @@ Route::group(['prefix' => 'akun-saya'], function () {
     Route::match(['post', 'get'], '/', [\App\Http\Controllers\Customer\AkunController::class, 'index'])->name('customer.account');
 });
 
+Route::group(['prefix' => 'pesanan'], function () {
+    Route::get( '/', [\App\Http\Controllers\Customer\PesananController::class, 'index'])->name('customer.order');
+});
+
 Route::group(['prefix' => 'admin'], function () {
     Route::match(['post', 'get'], '/', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
 
