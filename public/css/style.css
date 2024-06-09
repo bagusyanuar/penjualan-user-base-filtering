@@ -5,6 +5,8 @@
     --dark-tint: #8f8f8f;
     --light: #96afb8;
     --danger: #dc3545;
+    --success: #38b000;
+    --info: #0096c7;
     --warning: #FFC107;
     --font-small: 0.8em;
     --text-slate-400: rgb(148 163 184);
@@ -189,6 +191,89 @@ select.text-input {
     background-repeat: no-repeat;
     background-position: calc(100% - 4px) center;
 
+}
+
+.chip-status-danger {
+    color: white;
+    background-color: var(--danger);
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 0.8em;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.chip-status-success {
+    color: white;
+    background-color: var(--success);
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 0.8em;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.chip-status-info {
+    color: white;
+    background-color: var(--info);
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 0.8em;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.delivery-status-container {
+    background-color: #52b788;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.delivery-status-container i {
+    color: white;
+    font-size: 1em;
+}
+
+/*datatable*/
+.dataTables_wrapper {
+    font-size: 0.8em;
+}
+
+.dataTables_scrollHeadInner {
+    padding-right: 0 !important;
+}
+
+.dataTables_wrapper .pagination .page-link {
+    font-size: 1em;
+}
+
+.dataTables_wrapper .pagination .page-item.active .page-link {
+    background-color: var(--bg-primary);
+    border-color: var(--bg-primary);
+}
+
+
+
+table.dataTable td.dt-control:before {
+    display: none !important;
+    color: rgba(0, 0, 0, 0.5);
+    content: "►";
+}
+
+.dt-control {
+    cursor: pointer;
+}
+
+.middle-header {
+    vertical-align: middle !important;
 }
 
 /*.product-list-container {*/

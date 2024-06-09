@@ -227,34 +227,7 @@
 
 
 
-.dataTables_wrapper {
-    font-size: 0.8em;
-}
 
-.dataTables_wrapper .pagination .page-link {
-    font-size: 1em;
-}
-
-.dataTables_wrapper .pagination .page-item.active .page-link {
-    background-color: var(--bg-primary);
-    border-color: var(--bg-primary);
-}
-
-
-
-table.dataTable td.dt-control:before {
-    display: none !important;
-    color: rgba(0, 0, 0, 0.5);
-    content: "►";
-}
-
-.dt-control {
-    cursor: pointer;
-}
-
-.middle-header {
-    vertical-align: middle !important;
-}
 
 .box-product-image {
     width: 60px;

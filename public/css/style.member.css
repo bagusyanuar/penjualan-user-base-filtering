@@ -632,5 +632,12 @@ a.custom-nav-brand img {
     font-size: 20px !important;
 }
 
+.card-content {
+    background-color: white;
+    padding: 1.5rem 1.75rem;
+    border-radius: 12px;
+    width: 100%;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+}
 
 
