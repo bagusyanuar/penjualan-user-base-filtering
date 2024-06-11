@@ -24,4 +24,13 @@ class PesananController extends CustomController
         }
         return view('customer.akun.pesanan.index');
     }
+
+    public function detail($id)
+    {
+        $data = Penjualan::with([])
+            ->findOrFail($id);
+        return view('customer.akun.pesanan.detail')->with([
+            'data' => $data
+        ]);
+    }
 }

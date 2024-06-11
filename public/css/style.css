@@ -197,8 +197,7 @@ select.text-input {
     color: white;
     background-color: var(--danger);
     width: 100%;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding: 4px 8px;
     font-size: 0.8em;
     border-radius: 4px;
     text-align: center;
@@ -208,8 +207,7 @@ select.text-input {
     color: white;
     background-color: var(--success);
     width: 100%;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding: 4px 8px;
     font-size: 0.8em;
     border-radius: 4px;
     text-align: center;
@@ -219,8 +217,7 @@ select.text-input {
     color: white;
     background-color: var(--info);
     width: 100%;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding: 4px 8px;
     font-size: 0.8em;
     border-radius: 4px;
     text-align: center;

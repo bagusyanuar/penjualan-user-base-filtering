@@ -23,4 +23,13 @@ class Penjualan extends Model
         'kota',
         'alamat'
     ];
+
+    protected $casts = [
+        'is_kirim' => 'boolean'
+    ];
+
+    public function keranjang()
+    {
+        return $this->hasMany(Keranjang::class,'penjualan_id');
+    }
 }

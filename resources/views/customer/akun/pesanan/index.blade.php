@@ -44,7 +44,7 @@
                         <th width="10%" class="text-end">Sub Total</th>
                         <th width="10%" class="text-end">Ongkir</th>
                         <th width="10%" class="text-end">Total</th>
-                        <th width="12%" class="text-center">Status</th>
+                        <th width="13%" class="text-center">Status</th>
                         <th width="8%" class="text-center"></th>
                     </tr>
                     </thead>
@@ -113,6 +113,7 @@
                     },
                     {
                         data: 'status',
+                        orderable: false,
                         className: 'middle-header text-center',
                         render: function (data) {
                             return '<div class="chip-status-danger">menunggu pembayaran</div>'
@@ -125,15 +126,15 @@
                         render: function (data) {
                             let id = data['id'];
                             let isDelivery = data['is_kirim'];
-                            let urlEdit = path + '/' + id + '/edit';
+                            let urlDetail = path + '/' + id;
                             if (isDelivery === 1) {
                                 return '<div class="w-100 d-flex justify-content-center align-items-center gap-1">' +
                                     '<div class="delivery-status-container"><i class="bx bx-car"></i></div>' +
-                                    '<a style="color: var(--dark-tint)" href="#" class="btn-table-action-delete" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +
+                                    '<a style="color: var(--dark-tint)" href="' + urlDetail + '" class="btn-table-action-delete" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +
                                     '</div>';
                             }
                             return '<div class="w-100 d-flex justify-content-center align-items-center gap-1">' +
-                                '<a style="color: var(--dark-tint)" href="#" class="btn-table-action-delete" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +
+                                '<a style="color: var(--dark-tint)" href="' + urlDetail + '" class="btn-table-action-delete" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +
                                 '</div>';
                         }
                     }
