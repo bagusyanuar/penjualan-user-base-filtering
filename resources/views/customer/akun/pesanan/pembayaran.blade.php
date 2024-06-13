@@ -18,6 +18,13 @@
             })
         </script>
     @endif
+    <div class="lazy-backdrop" id="overlay-loading">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <div class="spinner-border text-light" role="status">
+            </div>
+            <p class="text-light">Sedang Menyimpan Data...</p>
+        </div>
+    </div>
     <div class="w-100 d-flex justify-content-between align-items-center mb-3">
         <p class="page-title">Pesanan</p>
         <nav aria-label="breadcrumb">
@@ -86,18 +93,155 @@
                               style="color: var(--dark); font-weight: bold;">Rp{{ number_format($data->total, 0, ',', '.') }}</span>
                     </div>
                     <hr class="custom-divider"/>
-                    <div class="w-100 mb-3">
-                        <label for="category" class="form-label input-label">Kategori <span
-                                class="color-danger">*</span></label>
-                        <select id="category" name="category" class="text-input">
-                            @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->nama }}</option>
-                            @endforeach
-                        </select>
-                        <span id="category-error" class="input-label-error d-none"></span>
-                    </div>
+                    <form method="post" id="form-data">
+                        @csrf
+                        <div class="w-100 mb-2">
+                            <label for="bank" class="form-label input-label">Bank</label>
+                            <select id="bank" name="bank" class="text-input">
+                                <option value="BRI">BRI (91283948124)</option>
+                                <option value="BCA">BCA (99829948499)</option>
+                                <option value="MANDIRI">MANDIRI (12984912885)</option>
+                            </select>
+                        </div>
+                        <div class="w-100">
+                            <label for="document-dropzone" class="form-label input-label">Bukti Transfer</label>
+                            <div class="w-100 needsclick dropzone mb-3" id="document-dropzone"></div>
+                        </div>
+                    </form>
+                    <hr class="custom-divider"/>
+                    <a href="#" class="btn-action-primary" id="btn-save">Upload</a>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('css')
+    <link href="{{ asset('/css/dropzone.min.css') }}" rel="stylesheet"/>
+@endsection
+
+@section('js')
+    <script src="{{ asset('/js/helper.js') }}"></script>
+    <script src="{{ asset('/js/dropzone.min.js') }}"></script>
+    <script>
+        var path = '/{{ request()->path() }}';
+        var uploadedDocumentMap = {};
+        var myDropzone;
+        Dropzone.autoDiscover = false;
+        Dropzone.options.documentDropzone = {
+            success: function (file, response) {
+                $('#form').append('<input type="hidden" name="files[]" value="' + file.name + '">');
+                console.log(response);
+                uploadedDocumentMap[file.name] = response.name
+            },
+        };
+
+        function setupDropzone() {
+            $('#document-dropzone').dropzone({
+                url: path,
+                maxFilesize: 5,
+                addRemoveLinks: true,
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                },
+                autoProcessQueue: false,
+                paramName: "file",
+                init: function () {
+                    myDropzone = this;
+                    $('#btn-save').on('click', function (e) {
+                        e.preventDefault();
+                        Swal.fire({
+                            title: "Konfirmasi!",
+                            text: "Apakah anda yakin ingin menyimpan data?",
+                            icon: 'question',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ya',
+                            cancelButtonText: 'Batal',
+                        }).then((result) => {
+                            if (result.value) {
+                                blockLoading(true);
+                                if (myDropzone.files.length > 0) {
+                                    myDropzone.processQueue();
+                                } else {
+                                    let frm = $('#form-data')[0];
+                                    let f_data = new FormData(frm);
+                                    $.ajax({
+                                        type: "POST",
+                                        enctype: 'multipart/form-data',
+                                        url: path,
+                                        data: f_data,
+                                        processData: false,
+                                        contentType: false,
+                                        cache: false,
+                                        timeout: 600000,
+                                        success: function (data) {
+                                            blockLoading(false);
+                                            Swal.fire({
+                                                title: 'Berhasil',
+                                                text: 'Berhasil Menyimpan data...',
+                                                icon: 'success',
+                                                timer: 700
+                                            }).then(() => {
+                                                window.location.reload();
+                                            });
+                                        },
+                                        error: function (e) {
+                                            blockLoading(false);
+                                            Swal.fire({
+                                                title: 'Ooops',
+                                                text: 'Gagal Menyimpan Data...',
+                                                icon: 'error',
+                                                timer: 700
+                                            });
+                                        }
+                                    })
+                                }
+                            }
+                        });
+                    });
+                    this.on('sending', function (file, xhr, formData) {
+                        // Append all form inputs to the formData Dropzone will POST
+                        var data = $('#form-data').serializeArray();
+                        $.each(data, function (key, el) {
+                            formData.append(el.name, el.value);
+                        });
+                    });
+
+                    this.on('success', function (file, response) {
+                        blockLoading(false);
+                        Swal.fire({
+                            title: 'Berhasil',
+                            text: 'Berhasil Menyimpan data...',
+                            icon: 'success',
+                            timer: 700
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    });
+
+                    this.on('error', function (file, response) {
+                        blockLoading(false);
+                        Swal.fire({
+                            title: 'Ooops',
+                            text: 'Gagal Menyimpan Data...',
+                            icon: 'error',
+                            timer: 700
+                        });
+                    });
+
+                    this.on('addedfile', function (file) {
+                        if (this.files.length > 1) {
+                            this.removeFile(this.files[0]);
+                        }
+                    });
+                },
+            })
+        }
+
+        $(document).ready(function () {
+            setupDropzone();
+        })
+    </script>
 @endsection

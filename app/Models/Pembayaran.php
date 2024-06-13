@@ -16,7 +16,6 @@ class Pembayaran extends Model
         'tanggal',
         'bank',
         'bukti',
-        'total',
         'status',
         'deskripsi'
     ];

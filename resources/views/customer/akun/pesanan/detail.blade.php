@@ -66,9 +66,29 @@
                     <span style="font-weight: 600;">
                         @if($data->status === 0)
                             <div class="chip-status-danger">menunggu pembayaran</div>
+                        @elseif($data->status === 1)
+                            <div class="chip-status-warning">menunggu konfirmasi pembayaran</div>
+                        @elseif($data->status === 2)
+                            <div class="chip-status-danger">pembayaran di tolak</div>
+                        @elseif($data->status === 3)
+                            <div class="chip-status-info">barang di packing</div>
+                        @elseif($data->status === 4)
+                            <div class="chip-status-info">barang siap di ambil</div>
+                        @elseif($data->status === 5)
+                            <div class="chip-status-info">barang di kirim</div>
+                        @elseif($data->status === 6)
+                            <div class="chip-status-success">selesai</div>
                         @endif
                     </span>
                 </div>
+                @if($data->status === 2)
+                    <div class="d-flex align-items-center mb-1">
+                        <span style="" class="me-2">Alasan Penolakan :</span>
+                        <span style="font-weight: 600;">
+                             {{ $data->pembayaran_status->deskripsi }}
+                        </span>
+                    </div>
+                @endif
             </div>
             <hr class="custom-divider"/>
             <div class="d-flex w-100 gap-3">
@@ -109,8 +129,11 @@
                         <span id="lbl-total"
                               style="color: var(--dark); font-weight: bold;">Rp{{ number_format($data->total, 0, ',', '.') }}</span>
                     </div>
-                    <hr class="custom-divider"/>
-                    <a href="{{ route('customer.order.payment', ['id' => $data->id]) }}" class="btn-action-primary">Bayar</a>
+
+                    @if($data->status === 0 || $data->status === 2)
+                        <hr class="custom-divider"/>
+                        <a href="{{ route('customer.order.payment', ['id' => $data->id]) }}" class="btn-action-primary">Bayar</a>
+                    @endif
                 </div>
             </div>
         </div>

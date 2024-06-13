@@ -223,6 +223,16 @@ select.text-input {
     text-align: center;
 }
 
+.chip-status-warning {
+    color: var(--dark);
+    background-color: var(--warning);
+    width: 100%;
+    padding: 4px 8px;
+    font-size: 0.8em;
+    border-radius: 4px;
+    text-align: center;
+}
+
 .delivery-status-container {
     background-color: #52b788;
     width: 25px;

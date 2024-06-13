@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pembayarans', function (Blueprint $table) {
+        Schema::create('ratings', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('product_id')->unsigned();
             $table->bigInteger('penjualan_id')->unsigned();
-            $table->date('tanggal');
-            $table->string('bank');
-            $table->string('bukti');
-            $table->smallInteger('status')->default(0);
-            $table->text('deskripsi')->nullable();
+            $table->integer('rating')->default(0);
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('penjualan_id')->references('id')->on('penjualans');
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pembayarans');
+        Schema::dropIfExists('ratings');
     }
 };

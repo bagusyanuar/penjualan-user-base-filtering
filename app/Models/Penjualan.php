@@ -24,6 +24,14 @@ class Penjualan extends Model
         'alamat'
     ];
 
+    //status note
+    // 0 menunggu pembayaran
+    // 1 menunggu konfirmasi pembayaran
+    // 2 pembayaran di tolak
+    // 3 barang di packing
+    // 4 barang siap di ambil
+    // 5 barang di kirim
+    // 6 selesai
     protected $casts = [
         'is_kirim' => 'boolean'
     ];
@@ -31,5 +39,15 @@ class Penjualan extends Model
     public function keranjang()
     {
         return $this->hasMany(Keranjang::class,'penjualan_id');
+    }
+
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class, 'penjualan_id');
+    }
+
+    public function pembayaran_status()
+    {
+        return $this->hasOne(Pembayaran::class, 'penjualan_id')->orderBy('created_at', 'DESC');
     }
 }
