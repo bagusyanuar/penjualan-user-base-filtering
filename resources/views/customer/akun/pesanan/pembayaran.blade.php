@@ -73,44 +73,29 @@
             <hr class="custom-divider"/>
             <div class="d-flex w-100 gap-3">
                 <div class="flex-grow-1 d-flex gap-2">
-                    @foreach($data->keranjang as $cart)
-                        <div class="cart-item-container" style="height: fit-content;">
-                            <img src="{{ $cart->product->gambar }}" alt="product-image">
-                            <div class="flex-grow-1">
-                                <p style="color: var(--dark); font-size: 1em; margin-bottom: 0; font-weight: bold">{{ $cart->product->nama }}</p>
-                                <p style="margin-bottom: 0; color: var(--dark-tint); font-size: 0.8em;">{{ $cart->product->category->nama }}</p>
-                                <div class="d-flex align-items-center" style="font-size: 0.8em;">
-                                    <span style="color: var(--dark-tint);" class="me-1">Jumlah: </span>
-                                    <span style="color: var(--dark); font-weight: bold;">{{ $cart->qty }}X (Rp.{{ number_format($cart->harga, 0, ',' ,'.') }})</span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-end" style="width: 150px;">
-                                <p style="font-size: 1em; font-weight: bold; color: var(--dark);">
-                                    Rp{{ number_format($cart->total, 0, ',' ,'.') }}</p>
-                            </div>
-                        </div>
-                    @endforeach
+                    <div class="w-100 d-flex justify-content-center align-items-center">
+                        <img src="{{ asset('/assets/images/payment-bg.png') }}" alt="payment-image">
+                    </div>
                 </div>
-                <div class="card-content" style="width: 350px; height: fit-content;">
-                    <p style="font-size: 1em; font-weight: bold; color: var(--dark);">Ringkasan Belanja</p>
+                <div class="card-content" style="width: 400px; height: fit-content;">
+                    <p style="font-size: 1em; font-weight: bold; color: var(--dark);">Pembayaran</p>
                     <hr class="custom-divider"/>
                     <div class="d-flex align-items-center justify-content-between mb-1" style="font-size: 1em;">
-                        <span style="color: var(--dark-tint); font-size: 0.8em">Subtotal</span>
-                        <span id="lbl-sub-total"
-                              style="color: var(--dark); font-weight: 600;">Rp{{ number_format($data->sub_total, 0, ',', '.') }}</span>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-3" style="font-size: 1em;">
-                        <span style="color: var(--dark-tint); font-size: 0.8em">Biaya Pengiriman</span>
-                        <span id="lbl-shipment"
-                              style="color: var(--dark); font-weight: 600;">Rp{{ number_format($data->ongkir, 0, ',', '.') }}</span>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between mb-1" style="font-size: 1em;">
-                        <span style="color: var(--dark-tint); font-size: 0.8em">Total</span>
+                        <span style="color: var(--dark); font-size: 0.8em">Total</span>
                         <span id="lbl-total"
                               style="color: var(--dark); font-weight: bold;">Rp{{ number_format($data->total, 0, ',', '.') }}</span>
                     </div>
                     <hr class="custom-divider"/>
-                    <a href="{{ route('customer.order.payment', ['id' => $data->id]) }}" class="btn-action-primary">Bayar</a>
+                    <div class="w-100 mb-3">
+                        <label for="category" class="form-label input-label">Kategori <span
+                                class="color-danger">*</span></label>
+                        <select id="category" name="category" class="text-input">
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->nama }}</option>
+                            @endforeach
+                        </select>
+                        <span id="category-error" class="input-label-error d-none"></span>
+                    </div>
                 </div>
             </div>
         </div>

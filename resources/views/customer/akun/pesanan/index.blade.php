@@ -127,7 +127,7 @@
                             let id = data['id'];
                             let isDelivery = data['is_kirim'];
                             let urlDetail = path + '/' + id;
-                            if (isDelivery === 1) {
+                            if (isDelivery) {
                                 return '<div class="w-100 d-flex justify-content-center align-items-center gap-1">' +
                                     '<div class="delivery-status-container"><i class="bx bx-car"></i></div>' +
                                     '<a style="color: var(--dark-tint)" href="' + urlDetail + '" class="btn-table-action-delete" data-id="' + id + '"><i class="bx bx-dots-vertical-rounded"></i></a>' +

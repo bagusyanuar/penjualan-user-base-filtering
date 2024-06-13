@@ -33,4 +33,13 @@ class PesananController extends CustomController
             'data' => $data
         ]);
     }
+
+    public function pembayaran($id)
+    {
+        $data = Penjualan::with([])
+            ->findOrFail($id);
+        return view('customer.akun.pesanan.pembayaran')->with([
+            'data' => $data
+        ]);
+    }
 }
