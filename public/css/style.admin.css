@@ -280,3 +280,19 @@
     color: var(--dark);
     text-decoration: none;
 }
+
+.custom-tab-pills {
+    gap: 0.5rem !important;
+}
+
+.custom-tab-link {
+    border-radius: 10px !important;
+    font-size: 0.8em !important;
+    color: var(--bg-primary) !important;
+    border:  1px solid var(--bg-primary) !important;
+}
+
+.custom-tab-link.active{
+    background-color: var(--bg-primary) !important;
+    color: white !important;
+}

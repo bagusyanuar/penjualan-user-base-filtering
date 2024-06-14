@@ -78,10 +78,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#"
-                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/transaction*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.order') }}"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/pesanan*') ? 'active' : '' }}">
                         <i class='bx bx-shopping-bag'></i>
-                        <p>Transaction</p>
+                        <p>Pesanan</p>
                     </a>
                 </li>
             </ul>
