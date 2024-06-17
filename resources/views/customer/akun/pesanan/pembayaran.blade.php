@@ -103,6 +103,11 @@
                                 <option value="MANDIRI">MANDIRI (12984912885)</option>
                             </select>
                         </div>
+                        <div class="w-100 mb-2">
+                            <label for="name" class="form-label input-label">Atas Nama</label>
+                            <input type="text" placeholder="atas nama" class="text-input" id="name"
+                                   name="name">
+                        </div>
                         <div class="w-100">
                             <label for="document-dropzone" class="form-label input-label">Bukti Transfer</label>
                             <div class="w-100 needsclick dropzone mb-3" id="document-dropzone"></div>
@@ -184,7 +189,7 @@
                                                 icon: 'success',
                                                 timer: 700
                                             }).then(() => {
-                                                window.location.reload();
+                                                window.location.href = '/pesanan';
                                             });
                                         },
                                         error: function (e) {
@@ -217,7 +222,7 @@
                             icon: 'success',
                             timer: 700
                         }).then(() => {
-                            window.location.reload();
+                            window.location.href = '/pesanan';
                         });
                     });
 

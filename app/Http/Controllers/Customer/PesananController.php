@@ -65,6 +65,7 @@ class PesananController extends CustomController
                 'penjualan_id' => $orderID,
                 'tanggal' => Carbon::now()->format('Y-m-d'),
                 'bank' => $this->postField('bank'),
+                'atas_nama' => $this->postField('name'),
                 'status' => 0,
             ];
 

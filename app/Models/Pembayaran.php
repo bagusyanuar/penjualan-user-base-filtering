@@ -17,6 +17,7 @@ class Pembayaran extends Model
         'bank',
         'bukti',
         'status',
+        'atas_nama',
         'deskripsi'
     ];
 
