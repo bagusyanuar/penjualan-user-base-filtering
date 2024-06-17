@@ -84,6 +84,13 @@
                         <p>Pesanan</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.order') }}"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/laporan*') ? 'active' : '' }}">
+                        <i class='bx bxs-report'></i>
+                        <p>Laporan</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
