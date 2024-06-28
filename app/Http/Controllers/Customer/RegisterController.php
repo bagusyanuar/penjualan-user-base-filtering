@@ -59,7 +59,6 @@ class RegisterController extends CustomController
                 return redirect()->back()->with('success', 'Berhasil melakukan registrasi');
             }catch (\Exception $e) {
                 DB::rollBack();
-                dd($e->getMessage());
                 return redirect()->back()->with('failed', 'terjadi kesalahan server...')->withInput();
             }
         }
