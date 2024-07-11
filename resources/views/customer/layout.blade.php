@@ -39,7 +39,7 @@
         @auth()
             <a href="{{ route('customer.cart') }}" class="nav-menu-item">
                 <i class='bx bx-cart-alt'></i>
-                <div class="custom-badge"><span>4</span></div>
+                <div class="custom-badge d-none"><span>4</span></div>
             </a>
             <a href="{{ route('customer.account') }}" class="nav-menu-item">
                 <i class='bx bx-user'></i>

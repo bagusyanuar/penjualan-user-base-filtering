@@ -70,7 +70,7 @@ class KeranjangController extends CustomController
             if (!$shipment) {
                 return $this->jsonErrorResponse('kota tujuan tidak ditemukan');
             }
-            $transactionRef = 'HP-'.date('YmdHis');
+            $transactionRef = 'HP-' . date('YmdHis');
             /** @var Collection $carts */
             $carts = Keranjang::with(['product.category'])
                 ->whereNull('penjualan_id')
@@ -111,9 +111,10 @@ class KeranjangController extends CustomController
             foreach ($carts as $cart) {
                 $cart->update(['penjualan_id' => $transaction->id]);
             }
+            $transID = $transaction->id;
             DB::commit();
-            return $this->jsonSuccessResponse('success', 'Berhasil menambahkan keranjang...');
-        }catch (\Exception $e) {
+            return $this->jsonSuccessResponse('success', $transID);
+        } catch (\Exception $e) {
             return $this->jsonErrorResponse($e->getMessage());
         }
     }
@@ -143,7 +144,7 @@ class KeranjangController extends CustomController
             }
 
             $productPrice = $product->harga;
-            $total = (int) $qty * $productPrice;
+            $total = (int)$qty * $productPrice;
             $data_request = [
                 'user_id' => $userID,
                 'penjualan_id' => null,
@@ -154,7 +155,7 @@ class KeranjangController extends CustomController
             ];
             Keranjang::create($data_request);
             return $this->jsonSuccessResponse('success', 'Berhasil menambahkan keranjang...');
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $this->jsonErrorResponse();
         }
     }

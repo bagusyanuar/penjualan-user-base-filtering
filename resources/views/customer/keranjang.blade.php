@@ -57,14 +57,16 @@
                 <span class="input-label">Metode Pengiriman</span>
                 <div class="mt-2">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input shipping-method" type="radio" name="shipping-method" id="delivery"
+                        <input class="form-check-input shipping-method" type="radio" name="shipping-method"
+                               id="delivery"
                                value="delivery" checked>
                         <label class="form-check-label" for="delivery" style="font-size: 0.8em; color: var(--dark);">
                             Kirim
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input shipping-method" type="radio" name="shipping-method" id="pickup" value="pickup">
+                        <input class="form-check-input shipping-method" type="radio" name="shipping-method" id="pickup"
+                               value="pickup">
                         <label class="form-check-label" for="pickup" style="font-size: 0.8em; color: var(--dark);">
                             Ambil Sendiri
                         </label>
@@ -184,11 +186,12 @@
                 let destination = $('#shipment').val();
                 let address = $('#address').val();
                 blockLoading(true);
-                await $.post(url, {
+                let response = await $.post(url, {
                     shipping_method: shippingMethod,
                     destination: destination,
                     address: address
                 });
+                let id = response['data'];
                 blockLoading(false);
                 Swal.fire({
                     title: 'Success',
@@ -196,9 +199,9 @@
                     icon: 'success',
                     timer: 700
                 }).then(() => {
-                    window.location.reload();
+                    window.location.href = '/pesanan/' + id + '/pembayaran';
                 })
-            }catch (e) {
+            } catch (e) {
                 blockLoading(false);
                 let error_message = JSON.parse(e.responseText);
                 ErrorAlert('Error', error_message.message);

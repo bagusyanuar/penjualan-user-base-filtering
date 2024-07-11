@@ -45,6 +45,7 @@ Route::group(['prefix' => 'pesanan'], function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Route::match(['post', 'get'], '/', [\App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
+    Route::get( '/logout', [\App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin.logout');
 
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 

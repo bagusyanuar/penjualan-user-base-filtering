@@ -50,4 +50,9 @@ class Penjualan extends Model
     {
         return $this->hasOne(Pembayaran::class, 'penjualan_id')->orderBy('created_at', 'DESC');
     }
+
+    public function rating()
+    {
+        return $this->hasMany(Rating::class,'penjualan_id');
+    }
 }

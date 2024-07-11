@@ -43,7 +43,15 @@ class ProductController extends CustomController
         $product = Product::with([])
             ->where('id', '=', $id)
             ->firstOrFail();
-        return view('customer.product.detail')->with(['product' => $product]);
+        $recommendProducts = Product::with([])
+            ->where('id', '!=', $id)
+            ->take(5)
+            ->get();
+
+        return view('customer.product.detail')->with([
+            'product' => $product,
+            'recommends' => $recommendProducts
+        ]);
     }
 
 

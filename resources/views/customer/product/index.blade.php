@@ -92,11 +92,8 @@
                     '</div>' +
                     '</div>' +
                     '<div class="product-action">' +
-                    '<a href="#" data-id="' + id + '" class="btn-cart">' +
-                    '<i class="bx bx-cart-alt"></i>' +
-                    '</a>' +
                     '<a href="#" data-id="' + id + '" class="btn-shop">' +
-                    '<i class="bx bx-shopping-bag"></i>' +
+                    '<i class="bx bx-right-arrow-alt"></i>' +
                     '</a>' +
                     '</div>' +
                     '</div>';
@@ -115,16 +112,11 @@
                 window.location.href = '/product/' + id;
             })
 
-            $('.btn-cart').on('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                let id = this.dataset.id;
-            })
-
             $('.btn-shop').on('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
                 let id = this.dataset.id;
+                window.location.href = '/product/' + id;
             })
         }
 
@@ -141,6 +133,7 @@
             eventChangeCategory();
             getData();
             eventSearchHandler();
+            eventProductAction();
         });
     </script>
 @endsection

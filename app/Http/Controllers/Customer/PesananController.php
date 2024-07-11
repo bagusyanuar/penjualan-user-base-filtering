@@ -32,7 +32,7 @@ class PesananController extends CustomController
 
     public function detail($id)
     {
-        $data = Penjualan::with([])
+        $data = Penjualan::with(['rating', 'keranjang.product'])
             ->findOrFail($id);
         return view('customer.akun.pesanan.detail')->with([
             'data' => $data

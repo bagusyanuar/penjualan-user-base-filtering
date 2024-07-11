@@ -640,4 +640,10 @@ a.custom-nav-brand img {
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
 }
 
+.star-rate {
+    color: var(--warning) !important;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
 

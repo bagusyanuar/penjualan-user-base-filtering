@@ -92,7 +92,7 @@
             </div>
             <hr class="custom-divider"/>
             <div class="d-flex w-100 gap-3">
-                <div class="flex-grow-1 d-flex gap-2">
+                <div class="flex-grow-1 d-flex gap-2" style="flex-direction: column;">
                     @foreach($data->keranjang as $cart)
                         <div class="cart-item-container" style="height: fit-content;">
                             <img src="{{ $cart->product->gambar }}" alt="product-image">
@@ -136,6 +136,43 @@
                     @endif
                 </div>
             </div>
+            @if(count($data->rating) <= 0)
+                <hr class="custom-divider"/>
+                <p style="font-size: 1em; font-weight: 600; color: var(--dark); text-align: center">
+                    Rating Product
+                </p>
+                <div class="w-100 product-container" style="flex-direction: row;">
+                    @foreach($data->keranjang as $item)
+                        <div class="card-content d-flex flex-column"
+                             style="width: 220px; height: 270px; padding: 5px 0;">
+                            <div
+                                style="width: 100%; height: 150px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+                                <img src="{{ $item->product->gambar }}" alt="img-product"
+                                     style="height: 150px; object-fit: cover; object-position: center center;">
+                            </div>
+                            <div class="flex-grow-1 d-flex justify-content-between flex-column"
+                                 style="padding: 0 10px;">
+                                <p style="font-size: 0.8em; color: var(--dark); font-weight: 600; text-align: center; margin-bottom: 5px;">
+                                    {{ $item->product->nama }}
+                                </p>
+                                <div class="w-100 d-flex align-items-center justify-content-center"
+                                     style="padding-bottom: 10px;">
+                                    <i class='bx bxs-star star-rate' data-index="1"></i>
+                                    <i class='bx bxs-star star-rate' data-index="2"></i>
+                                    <i class='bx bxs-star star-rate' data-index="3"></i>
+                                    <i class='bx bxs-star star-rate' data-index="4"></i>
+                                    <i class='bx bxs-star star-rate' data-index="5"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
+@endsection
+
+@section('js')
+
 @endsection

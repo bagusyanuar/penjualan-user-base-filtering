@@ -62,6 +62,33 @@
     </div>
     <hr class="custom-divider"/>
     <p class="section-title">Rekomendasi Produk Lainnya</p>
+    <div class="product-container mb-3">
+        @foreach($recommends as $recommend)
+            <div class="card-product" data-id="{{ $recommend->id }}">
+                <div class="image-container">
+                    <img src="{{ $recommend->gambar }}" alt="img-product">
+                </div>
+                <div class="product-info w-100">
+                    <p class="product-name">{{ $recommend->nama }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="product-rate">
+                            <i class='bx bxs-star'></i>
+                            <span>5</span>
+                        </div>
+                        <p class="product-price">Rp.{{ number_format($recommend->harga, 0, ',', '.') }}</p>
+                    </div>
+                </div>
+                <div class="product-action">
+                    <a href="#" class="btn-shop" data-id="{{ $recommend->id }}">
+                        <i class='bx bx-right-arrow-alt'></i>
+                    </a>
+                </div>
+            </div>
+        @endforeach
+    </div>
+    <div class="w-100 d-flex justify-content-center">
+        <a href="{{ route('customer.product') }}" style="font-size: 1em; color: var(--bg-primary); text-decoration: none;">Lihat Produk Lainnya</a>
+    </div>
 @endsection
 
 @section('js')
@@ -108,12 +135,26 @@
             }
         }
 
+        function eventProductAction() {
+            $('.card-product').on('click', function () {
+                let id = this.dataset.id;
+                window.location.href = '/product/' + id;
+            })
+
+            $('.btn-shop').on('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                let id = this.dataset.id;
+                window.location.href = '/product/' + id;
+            })
+        }
+
         $(document).ready(function () {
             eventQtyChange(parseInt(strQTY), function (newVal) {
                 eventChangeSubTotal(newVal)
             });
             eventAddToCart();
-
+            eventProductAction();
         })
     </script>
 @endsection

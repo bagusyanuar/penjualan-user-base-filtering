@@ -23,29 +23,48 @@
     <title>Halaman Login Admin</title>
 </head>
 <body>
-
+@if (\Illuminate\Support\Facades\Session::has('failed'))
+    <script>
+        Swal.fire("Ooops", '{{ \Illuminate\Support\Facades\Session::get('failed') }}', "error")
+    </script>
+@endif
+@if (\Illuminate\Support\Facades\Session::has('success'))
+    <script>
+        Swal.fire({
+            title: 'Success',
+            text: '{{ \Illuminate\Support\Facades\Session::get('success') }}',
+            icon: 'success',
+            timer: 700
+        }).then(() => {
+            window.location.href = '/';
+        })
+    </script>
+@endif
 <div class="login-container">
-    <div class="card-login-form">
-        <div class="form-login">
-            <img src="{{ asset('/assets/images/horizontal-logo.jpeg') }}" alt="image-logo">
-            <p class="title mb-2">FORM LOGIN ADMIN</p>
-            <label for="username" class="form-label d-none"></label>
-            <div class="text-group-container">
-                <i class='bx bx-user'></i>
-                <input type="text" placeholder="username" class="text-group-input" id="username"
-                       name="username">
-            </div>
-            <label for="password" class="form-label d-none"></label>
-            <div class="text-group-container">
-                <i class='bx bx-lock-alt'></i>
-                <input type="password" placeholder="password" class="text-group-input"
-                       id="password" name="password">
-            </div>
-            <div class="w-100 d-flex justify-content-end align-items-center">
-                <button type="submit" class="btn-login">Login</button>
+    <form method="post">
+        @csrf
+        <div class="card-login-form">
+            <div class="form-login">
+                <img src="{{ asset('/assets/images/horizontal-logo.jpeg') }}" alt="image-logo">
+                <p class="title mb-2">FORM LOGIN ADMIN</p>
+                <label for="username" class="form-label d-none"></label>
+                <div class="text-group-container">
+                    <i class='bx bx-user'></i>
+                    <input type="text" placeholder="username" class="text-group-input" id="username"
+                           name="username">
+                </div>
+                <label for="password" class="form-label d-none"></label>
+                <div class="text-group-container">
+                    <i class='bx bx-lock-alt'></i>
+                    <input type="password" placeholder="password" class="text-group-input"
+                           id="password" name="password">
+                </div>
+                <div class="w-100 d-flex justify-content-end align-items-center">
+                    <button type="submit" class="btn-login">Login</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" type="text/javascript"></script>
