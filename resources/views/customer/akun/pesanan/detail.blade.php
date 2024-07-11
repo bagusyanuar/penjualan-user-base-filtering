@@ -157,16 +157,24 @@
                                 </p>
                                 <div class="w-100 d-flex align-items-center justify-content-center"
                                      style="padding-bottom: 10px;">
-                                    <i class='bx bxs-star star-rate' data-index="1"></i>
-                                    <i class='bx bxs-star star-rate' data-index="2"></i>
-                                    <i class='bx bxs-star star-rate' data-index="3"></i>
-                                    <i class='bx bxs-star star-rate' data-index="4"></i>
-                                    <i class='bx bxs-star star-rate' data-index="5"></i>
+                                    <i class="bx bxs-star star-rate product-star-{{$item->id}}" data-index="1"
+                                       data-product="{{ $item->product->id }}" data-cart="{{ $item->id }}"></i>
+                                    <i class="bx bxs-star star-rate product-star-{{$item->id}}" data-index="2"
+                                       data-product="{{ $item->product->id }}" data-cart="{{ $item->id }}"></i>
+                                    <i class="bx bxs-star star-rate product-star-{{$item->id}}" data-index="3"
+                                       data-product="{{ $item->product->id }}" data-cart="{{ $item->id }}"></i>
+                                    <i class="bx bxs-star star-rate product-star-{{$item->id}}" data-index="4"
+                                       data-product="{{ $item->product->id }}" data-cart="{{ $item->id }}"></i>
+                                    <i class="bx bxs-star star-rate product-star-{{$item->id}}" data-index="5"
+                                       data-product="{{ $item->product->id }}" data-cart="{{ $item->id }}"></i>
                                 </div>
                             </div>
-
                         </div>
                     @endforeach
+                </div>
+                <hr class="custom-divider" />
+                <div class="d-flex justify-content-end">
+                    <a href="#" class="btn-action-primary" style="width: fit-content;" id="btn-rate">Beri Rating</a>
                 </div>
             @endif
         </div>
@@ -174,5 +182,84 @@
 @endsection
 
 @section('js')
+    <script src="{{ asset('/js/helper.js') }}"></script>
+    <script>
+        var path = '/{{ request()->path() }}';
+        var _pIDS = @json($cartProductIDS);
 
+        function eventChangeRate() {
+            $('.star-rate').on('click', function () {
+                let index = this.dataset.index;
+                let productID = this.dataset.product;
+                let cartID = this.dataset.cart;
+                let filledStarClass = 'bxs-star';
+                let unFilledStarClass = 'bx-star';
+                //clear star
+                let elStar = document.getElementsByClassName('product-star-' + cartID);
+                $.each(elStar, function (k, v) {
+                    let currentIdx = (k + 1);
+                    let intIdx = parseInt(index);
+                    v.classList.remove(filledStarClass);
+                    if (currentIdx <= intIdx) {
+                        v.classList.add(filledStarClass)
+                    }
+
+                    if (currentIdx > intIdx) {
+                        v.classList.add(unFilledStarClass);
+                    }
+                });
+            })
+        }
+
+        function eventRate() {
+            $('#btn-rate').on('click', function (e) {
+                e.preventDefault();
+                let arrData = [];
+                $.each(_pIDS, function (k, v) {
+                    let elStar = document.getElementsByClassName('product-star-' + v);
+                    let filledStarClass = 'bxs-star';
+                    let countStar = 0;
+                    let productID = '';
+                    $.each(elStar, function (ks, vs) {
+                        productID = vs.dataset.product;
+                        if (vs.classList.contains(filledStarClass)) {
+                            countStar = countStar + 1;
+                        }
+                    });
+                    console.log('ps-'+v, countStar, productID);
+                    let tmpData = {
+                        pID: productID,
+                        cID: v,
+                        star: countStar
+                    };
+                    arrData.push(tmpData);
+                });
+                rateHandler(arrData);
+            })
+        }
+
+        async function rateHandler(arrData = []) {
+            try {
+                let data = JSON.stringify(arrData);
+                let response = await $.post(path, {data});
+                console.log(response);
+                Swal.fire({
+                    title: 'Success',
+                    text: 'Berhasil memberikan rating product...',
+                    icon: 'success',
+                    timer: 700
+                }).then(() => {
+                    window.location.reload();
+                })
+            }catch (e) {
+                let error_message = JSON.parse(e.responseText);
+                ErrorAlert('Error', error_message.message);
+            }
+        }
+
+        $(document).ready(function () {
+            eventChangeRate();
+            eventRate();
+        });
+    </script>
 @endsection

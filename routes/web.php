@@ -39,7 +39,7 @@ Route::group(['prefix' => 'akun-saya'], function () {
 
 Route::group(['prefix' => 'pesanan'], function () {
     Route::get('/', [\App\Http\Controllers\Customer\PesananController::class, 'index'])->name('customer.order');
-    Route::get('/{id}', [\App\Http\Controllers\Customer\PesananController::class, 'detail'])->name('customer.order.detail');
+    Route::match(['post', 'get'],'/{id}', [\App\Http\Controllers\Customer\PesananController::class, 'detail'])->name('customer.order.detail');
     Route::match(['post', 'get'], '/{id}/pembayaran', [\App\Http\Controllers\Customer\PesananController::class, 'pembayaran'])->name('customer.order.payment');
 });
 

@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Customer;
 use App\Helper\CustomController;
 use App\Models\Pembayaran;
 use App\Models\Penjualan;
+use App\Models\Rating;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -32,10 +33,38 @@ class PesananController extends CustomController
 
     public function detail($id)
     {
+        if ($this->request->method() === 'POST' && $this->request->ajax()) {
+            try {
+                DB::beginTransaction();
+                $body = $this->postField('data');
+                $arrData = json_decode($body, true);
+                foreach ($arrData as $datum) {
+                    $data_request = [
+                        'user_id' => auth()->id(),
+                        'product_id' => $datum['pID'],
+                        'penjualan_id' => $id,
+                        'rating' => $datum['star']
+                    ];
+                    Rating::create($data_request);
+                }
+                DB::commit();
+                return $this->jsonSuccessResponse('success', $arrData);
+            }catch (\Exception $e) {
+                DB::rollBack();
+                return $this->jsonErrorResponse('terjadi kesalahan server...');
+            }
+        }
         $data = Penjualan::with(['rating', 'keranjang.product'])
             ->findOrFail($id);
+
+        $cartProductIDS = [];
+        foreach ($data->keranjang as $cart) {
+            $productID = $cart->id;
+            array_push($cartProductIDS, $productID);
+        }
         return view('customer.akun.pesanan.detail')->with([
-            'data' => $data
+            'data' => $data,
+            'cartProductIDS' => $cartProductIDS
         ]);
     }
 
