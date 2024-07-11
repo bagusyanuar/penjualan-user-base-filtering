@@ -22,4 +22,9 @@ class Product extends Model
     {
         return $this->belongsTo(Kategori::class, 'kategori_id');
     }
+
+    public function rating()
+    {
+        return $this->hasMany(Rating::class, 'product_id');
+    }
 }
