@@ -22,7 +22,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="product-rate">
                                 <i class='bx bxs-star'></i>
-                                <span>5</span>
+                                <span>{{ $product->avg_rating }}</span>
                             </div>
                             <p class="product-price">Rp.{{ number_format($product->harga, 0, ',', '.') }}</p>
                         </div>

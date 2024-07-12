@@ -20,7 +20,7 @@ class HomeController extends CustomController
             ->orderBy('created_at', 'DESC')
             ->offset(0)
             ->limit(5)
-            ->get();
+            ->get()->append(['avg_rating', 'terjual']);
         return view('customer.home')->with(['products' => $products]);
     }
 }

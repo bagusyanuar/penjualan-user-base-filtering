@@ -28,9 +28,9 @@
             <p class="product-name">{{ $product->nama }}</p>
             <div class="d-flex align-items-center selling-info mb-3">
                 <span class="product-sell-info me-1">Terjual</span>
-                <span class="me-2">100+</span>
+                <span class="me-2">{{ $product->terjual }}</span>
                 <i class="bx bxs-star me-1"></i>
-                <span class="product-sell-info">4</span>
+                <span class="product-sell-info">{{ $product->avg_rating }}</span>
             </div>
             <p class="product-price mb-3">Rp{{ number_format($product->harga, 0, ',', '.') }}</p>
             <p style="color: var(--bg-primary); font-weight: bold; font-size: 1em;">Deskripsi</p>
@@ -73,7 +73,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="product-rate">
                             <i class='bx bxs-star'></i>
-                            <span>5</span>
+                            <span>{{ $recommend->avg_rating }}</span>
                         </div>
                         <p class="product-price">Rp.{{ number_format($recommend->harga, 0, ',', '.') }}</p>
                     </div>

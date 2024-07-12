@@ -27,4 +27,26 @@ class Product extends Model
     {
         return $this->hasMany(Rating::class, 'product_id');
     }
+
+    public function keranjang()
+    {
+        return $this->hasMany(Keranjang::class, 'product_id');
+    }
+
+    public function getAvgRatingAttribute()
+    {
+        $rating = $this->rating()->get();
+        $count = count($rating);
+        $sum = $rating->sum('rating');
+        if ($count > 0) {
+            return round($sum / $count, 1, PHP_ROUND_HALF_UP);
+        }
+        return 0;
+    }
+
+    public function getTerjualAttribute()
+    {
+        return count($this->keranjang()->whereNotNull('penjualan_id')->get());
+    }
+
 }

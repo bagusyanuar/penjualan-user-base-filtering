@@ -136,7 +136,7 @@
                     @endif
                 </div>
             </div>
-            @if(count($data->rating) <= 0)
+            @if(count($data->rating) <= 0 && $data->status === 6)
                 <hr class="custom-divider"/>
                 <p style="font-size: 1em; font-weight: 600; color: var(--dark); text-align: center">
                     Rating Product

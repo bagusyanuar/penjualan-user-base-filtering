@@ -76,6 +76,8 @@
                 let image = v['gambar'];
                 let name = v['nama'];
                 let price = v['harga'];
+                let avgRating = v['avg_rating'];
+                let sell = v['terjual']
                 let formattedPrice = price.toLocaleString('id-ID')
                 productsEl += '<div class="card-product" data-id="' + id + '" style="width: 255px;">' +
                     '<div class="image-container">' +
@@ -86,7 +88,7 @@
                     '<div class="d-flex justify-content-between align-items-center">' +
                     '<div class="product-rate">' +
                     '<i class="bx bxs-star"></i>' +
-                    '<span>5</span>' +
+                    '<span>' + avgRating + '</span>' +
                     '</div>' +
                     '<p class="product-price">Rp.' + formattedPrice + '</p>' +
                     '</div>' +
@@ -103,7 +105,6 @@
                 '</div>'
             )
         }
-
 
 
         function eventProductAction() {
