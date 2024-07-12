@@ -56,37 +56,55 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
+                @if(auth()->user()->role === 'pimpinan')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.pengguna') }}"
+                           class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/pengguna*') ? 'active' : '' }}">
+                            <i class='bx bx-user'></i>
+                            <p>Pengguna</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.customer') }}"
+                           class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/customer*') ? 'active' : '' }}">
+                            <i class='bx bx-group'></i>
+                            <p>Customer</p>
+                        </a>
+                    </li>
+                @endif
+                @if(auth()->user()->role === 'admin')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.category') }}"
+                           class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/kategori*') ? 'active' : '' }}">
+                            <i class='bx bx-purchase-tag'></i>
+                            <p>Kategori</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.product') }}"
+                           class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/product*') ? 'active' : '' }}">
+                            <i class='bx bx-briefcase'></i>
+                            <p>Product</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.shipment') }}"
+                           class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/biaya-pengiriman*') ? 'active' : '' }}">
+                            <i class='bx bx-car'></i>
+                            <p>Biaya Pengiriman</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.order') }}"
+                           class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/pesanan*') ? 'active' : '' }}">
+                            <i class='bx bx-shopping-bag'></i>
+                            <p>Pesanan</p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
-                    <a href="{{ route('admin.category') }}"
-                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/kategori*') ? 'active' : '' }}">
-                        <i class='bx bx-purchase-tag'></i>
-                        <p>Kategori</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.product') }}"
-                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/product*') ? 'active' : '' }}">
-                        <i class='bx bx-briefcase'></i>
-                        <p>Product</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.shipment') }}"
-                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/biaya-pengiriman*') ? 'active' : '' }}">
-                        <i class='bx bx-car'></i>
-                        <p>Biaya Pengiriman</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.order') }}"
-                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/pesanan*') ? 'active' : '' }}">
-                        <i class='bx bx-shopping-bag'></i>
-                        <p>Pesanan</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.order') }}"
-                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/laporan*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.report') }}"
+                       class="nav-link d-flex align-items-center sidebar-item {{ request()->is('admin/laporan-penjualan*') ? 'active' : '' }}">
                         <i class='bx bxs-report'></i>
                         <p>Laporan</p>
                     </a>

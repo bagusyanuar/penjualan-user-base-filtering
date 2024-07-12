@@ -49,6 +49,17 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 
+    Route::group(['prefix' => 'pengguna'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\PenggunaController::class, 'index'])->name('admin.pengguna');
+        Route::match(['post', 'get'], '/add', [\App\Http\Controllers\Admin\PenggunaController::class, 'add'])->name('admin.pengguna.add');
+        Route::match(['post', 'get'], '/{id}/edit', [\App\Http\Controllers\Admin\PenggunaController::class, 'edit'])->name('admin.pengguna.edit');
+        Route::post('/{id}/delete', [\App\Http\Controllers\Admin\PenggunaController::class, 'delete'])->name('admin.pengguna.delete');
+    });
+
+    Route::group(['prefix' => 'customer'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\CustomerController::class, 'index'])->name('admin.customer');
+    });
+
     Route::group(['prefix' => 'kategori'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('admin.category');
         Route::match(['post', 'get'], '/add', [\App\Http\Controllers\Admin\CategoryController::class, 'add'])->name('admin.category.add');
@@ -75,5 +86,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::match(['post', 'get'],'/{id}/pesanan-baru', [\App\Http\Controllers\Admin\PesananController::class, 'detail_new'])->name('admin.order.detail.new');
         Route::match(['post', 'get'],'/{id}/pesanan-proses', [\App\Http\Controllers\Admin\PesananController::class, 'detail_process'])->name('admin.order.detail.process');
         Route::match(['post', 'get'],'/{id}/pesanan-selesai', [\App\Http\Controllers\Admin\PesananController::class, 'detail_finish'])->name('admin.order.detail.finish');
+    });
+
+    Route::group(['prefix' => 'laporan-penjualan'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\LaporanController::class, 'index'])->name('admin.report');
+        Route::get('/cetak', [\App\Http\Controllers\Admin\LaporanController::class, 'pdf'])->name('admin.report.print');
     });
 });

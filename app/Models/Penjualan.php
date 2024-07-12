@@ -36,6 +36,11 @@ class Penjualan extends Model
         'is_kirim' => 'boolean'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function keranjang()
     {
         return $this->hasMany(Keranjang::class,'penjualan_id');
