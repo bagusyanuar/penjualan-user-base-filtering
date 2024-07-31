@@ -107,7 +107,7 @@ class PesananController extends CustomController
         try {
             $status = $this->postField('status');
             $reason = $this->postField('reason');
-            $order = Penjualan::with(['pembayaran_status'])
+            $order = Penjualan::with(['pembayaran_status', 'keranjang.product'])
                 ->where('id', '=', $id)
                 ->first();
             if (!$order) {
@@ -124,6 +124,18 @@ class PesananController extends CustomController
                     $data_request_order['status'] = 3;
                 } else {
                     $data_request_order['status'] = 4;
+                }
+
+                $carts = $order->keranjang;
+                foreach ($carts as $cart) {
+                    $qtyOut = $cart->qty;
+
+                    $product = $cart->product;
+                    $currentQty = $product->qty;
+                    $restQty = $currentQty - $qtyOut;
+                    $product->update([
+                        'qty' => $restQty
+                    ]);
                 }
             }
 
